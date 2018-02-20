@@ -1,2 +1,2 @@
-# EmotionRecognition
-We'd like to build a tool for Emotion Recognition
+# Emotion Recognition
+Building a tool for Emotion Recognition with IA Algorithms

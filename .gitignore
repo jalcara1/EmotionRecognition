@@ -1,0 +1,16 @@
+# Compiled source #
+###################
+*.out
+*.class
+*.dll
+*.exe
+*.o
+*.pyc
+
+# Logs #
+######################
+*.log
+
+# OS generated files #
+######################
+*~

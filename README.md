@@ -14,6 +14,7 @@ pip install mysqlclient		// Instalan un cliente MySQL
 
 #5- 
 python manage.py migrate		// Migran el modelo de la base de datos
+Nota: recuerda antes de migrar haber creado una base de datos llamada "autoEvalWorkClass" en tu servidor MySQL
 
 #6- (opcional)
 python manage.py makemigrations [NameApp] //Al ejecutar makemigrations, usted le indica a Django que ha realizado algunos cambios a sus modelos (en este caso, ha realizado cambios nuevos) y que le gustaría que los guarde como una migración

@@ -1,0 +1,98 @@
+{% extends 'workClass/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block arg_class1 %}active text-black{% endblock %}
+    {% block index %}
+
+        <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="jumbotron">
+                    <h1 class="display-4">Sesiones</h1>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selecciona la Sesion
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Sesion 1</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Sesion 2</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Sesion 3</a>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <p>Descripcion de la sesion por campos</p>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="jumbotron">
+                    <h1 class="display-4">Docentes</h1>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selecciona al Docente
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Docente 1</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Docente 2</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Docente 3</a>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <p>Descripcion del Docente por campos</p>
+                </div>
+            </div>
+
+
+            <div class="col-sm">
+                <div class="jumbotron">
+                    <h1 class="display-4">Estudiantes</h1>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selecciona al Estudiante
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Estudiante 1</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Estudiante 2</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Estudiante 3</a>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <p>Descripcion del estudiante por campos</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="jumbotron">
+            <h1 class="display-4">Temas</h1>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Selecciona al Estudiante
+                </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Tema 1</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Tema 2</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Tema 3</a>
+            </div>
+            </div>
+            <hr class="my-4">
+            <p>Descripcion de los temas por campos</p>
+
+        </div>
+
+        </div>
+
+    {% endblock %}
+</body>
+</html>
+
+

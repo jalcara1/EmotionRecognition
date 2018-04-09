@@ -14,9 +14,11 @@
 
                             <div class="container" style="height: 130px;overflow-y: scroll;">
                             <div class="list-group ">
-                                 {%for video in todos_videos%}
-                                    <button id="video_click" type="button" class="list-group-item list-group-item-action">{{video.fecha}}</button>
-                                {% endfor %}
+                                 {% for video in todos_videos %}
+                                    <a href="{% url 'workClass:estadisticas_video' video.id %}">
+                                    <button type="button" class="list-group-item list-group-item-action">{{video.fecha}}</button>
+                                    </a>
+                                 {% endfor %}
                             </div>
                             </div>
                          <hr class="my-4">
@@ -27,7 +29,10 @@
                 <div class="jumbotron">
                     <h1 class="display-4">Descripcion del video</h1>
                     <hr class="my-4">
-                    <p>Descripcion del video</p>
+                    <p><B>Fecha: </B>{{video.fecha}}</p>
+                    <p><B>Formato: </B>{{video.formato}}</p>
+                    <p><B>Duracion: </B>{{video.duracion}}</p>
+                    <p><B>Emocion: </B>{{video.emocion}}</p>
                 </div>
 
             </div>
@@ -39,8 +44,10 @@
 
                             <div class="container" style="height: 130px;overflow-y: scroll;">
                             <div class="list-group ">
-                               {%for audio in todos_audios%}
-                                    <button id="video_click" type="button" class="list-group-item list-group-item-action">{{audio.fecha}}</button>
+                               {% for audio in todos_audios %}
+                                    <a href="{% url 'workClass:estadisticas_audio' audio.id %}">
+                                    <button type="button" class="list-group-item list-group-item-action">{{audio.fecha}}</button>
+                                    </a>
                                 {% endfor %}
                             </div>
                             </div>
@@ -51,7 +58,10 @@
                 <div class="jumbotron">
                     <h1 class="display-4">Descripcion del audio</h1>
                     <hr class="my-4">
-                    <p>Descripcion del audio</p>
+                    <p><B>Fecha: </B>{{audio.fecha}}</p>
+                    <p><B>Formato: </B>{{audio.formato}}</p>
+                    <p><B>Duracion: </B>{{audio.duracion}}</p>
+                    <p><B>Emocion: </B>{{audio.emocion}}</p>
                 </div>
 
             </div>

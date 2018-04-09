@@ -15,11 +15,13 @@
                             Selecciona la Sesion
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Sesion 1</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Sesion 2</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Sesion 3</a>
+
+                                 <div class="container" style="height: 180px;overflow-y: scroll;">
+                                {% for sesion in todos_sesiones %}
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'workClass:concepto' %}">{{sesion.fecha}}</a>
+                                {% endfor %}
+                            </div>
                             </div>
                         </div>
                         <hr class="my-4">
@@ -34,11 +36,12 @@
                             Selecciona al Docente
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Docente 1</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Docente 2</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Docente 3</a>
+                                <div class="container" style="height: 180px;overflow-y: scroll;">
+                                {% for docente in todos_docentes %}
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'workClass:concepto' %}">{{docente.nombre}}</a>
+                                {% endfor %}
+                            </div>
                             </div>
                         </div>
                         <hr class="my-4">

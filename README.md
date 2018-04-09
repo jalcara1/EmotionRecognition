@@ -9,6 +9,8 @@ Pasos para ejecutar la Aplicacion "EmotionRecognition"
 - **apt-get install mysql-server**	
 - Instalan un servidor MySQL
 - Nota: la aplicacion por defecto ingresa al servidor de MySQL con un usuario: root y una contrasena: 12345
+- Nota: Instalar el paquete de desarrollo para python 3.6
+- **sudo apt-get install python3.6-dev libmysqlclient-dev**
 
 ## 3
 - **source venv/bin/activate**

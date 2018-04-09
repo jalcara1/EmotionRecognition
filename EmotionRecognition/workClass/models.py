@@ -25,7 +25,7 @@ class Sesion(models.Model):
     horario = models.CharField(max_length=200)
     IDIOMA_CHOICE = (('Ingles','Ingles'),('Espanol','Espanol'),('Portugues','Portugues'),('Mandarin','Mandarin'))
     idioma = models.CharField(choices=IDIOMA_CHOICE, default='Ingles',max_length=20)
-    intensidad = models.OneToOneField(Intensidad, on_delete=models.CASCADE)
+    intensidad = models.ForeignKey(Intensidad, on_delete=models.CASCADE)
 
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=50)

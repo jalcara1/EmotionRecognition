@@ -1,4 +1,4 @@
-#!/home/carlosmbp/PycharmProjects/PI2/venv/bin/python3
+#!/home/carlosbp/PycharmProjects/EmotionRecognition/venv/bin/python
 from django.core import management
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ Pasos para ejecutar la Aplicacion "EmotionRecognition"
 ## 1
 - Puedes seguir el siguiente link para instalar la version correcta de python
 - http://docs.python-guide.org/en/latest/starting/install3/linux/
+- Nota: Este proyecto se trabaja bajo la version de Python 3.6
 
 ## 2
 - **apt-get install mysql-server**	
@@ -20,8 +21,12 @@ Pasos para ejecutar la Aplicacion "EmotionRecognition"
 - Ingresan a: **"EmotionRecognition/"**
 
 ## 5
+- **pip install django**
+- Instalar Django
 - **pip install mysqlclient**
-- Instalan un cliente MySQL
+- Instalar un cliente MySQL
+- Nota: como opcion alternativa para instalar las dependencias, ingresamos a la carpeta donde se encuentra manage.py
+- **pip install -r requirements.txt**
 
 ## 6 
 - **python manage.py migrate**

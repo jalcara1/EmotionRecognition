@@ -81,6 +81,7 @@ class Video(models.Model):
     formato = models.CharField(choices=FORMATO_CHOICES, default='MP4', max_length=6)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     ruta = models.FileField()
+    fecha = models.DateField()
 
 class Audio(models.Model):
     duracion = models.FloatField()
@@ -88,6 +89,7 @@ class Audio(models.Model):
     formato = models.CharField(choices=FORMATO_CHOICES, default='MP3', max_length=6)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     ruta = models.FileField()
+    fecha = models.DateField()
 
 class Emocion(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)

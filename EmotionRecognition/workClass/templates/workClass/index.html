@@ -6,15 +6,8 @@
     {% block index %}
         <p></p>
         <div class="container">
-        <div class="jumbotron">
-            <blockquote class="blockquote text-center">
-                <h5 class="display-4">¿Cual sera tu consulta?</h5>
-                <footer class="blockquote-footer">Selecciona una opcion a la vez y construye tu consulta</footer>
-            </blockquote>
-        </div>
-
+        <p></p>
         <div class="row">
-
              <div class="col" id="1">
                <div class="jumbotron">
                     <div class="row align-items-center">
@@ -166,11 +159,12 @@
                             </div>
                           </div>
                         </div>
-
-
-
+                        <p></p>
+                        {% include 'workClass/borrar_consulta.html' %}
                     </div>
                     </div>
+                   <hr class="my-4">
+                   <footer class="blockquote-footer">Selecciona una opcion a la vez y construye tu consulta</footer>
                </div>
              </div>
 

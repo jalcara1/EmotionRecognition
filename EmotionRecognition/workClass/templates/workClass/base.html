@@ -10,7 +10,7 @@
     <div class="container">
         <ul id="menuPrincipal" class="nav nav-tabs justify-content-center bg-dark ">
           <li class="nav-item">
-            <a  href="{% url 'workClass:index' %}"
+            <a  href="{% url 'workClass:index' 0 %}"
                 class="nav-link {% block arg_class1 %}text-white{% endblock %}">
                 <h2>Informacion general</h2></a>
           </li>
@@ -20,9 +20,9 @@
                 <h2>Galeria</h2></a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'workClass:concepto' %}"
+            <a href="{% url 'workClass:multimodal' %}"
                class="nav-link {% block arg_class3 %}text-white{% endblock %}" >
-                <h2>Concepto</h2></a>
+                <h2>Multimodal</h2></a>
           </li>
           <li class="nav-item">
             <a href="{% url 'workClass:estadisticas' %}"
@@ -39,7 +39,7 @@
 
     {% block index %}{% endblock %}
     {% block galeria %}{% endblock %}
-    {% block concepto %}{% endblock %}
+    {% block multimodal %}{% endblock %}
     {% block estadisticas %}{% endblock %}
 
 </body>

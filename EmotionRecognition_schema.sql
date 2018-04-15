@@ -206,7 +206,7 @@ CREATE TABLE `django_admin_log` (
   KEY `django_admin_log_user_id_c564eba6_fk` (`user_id`),
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2018-04-14 21:01:37.301772','1','Docente object (1)',1,'[{\"added\": {}}]',10,1),(2,'2018-04-14 21:02:16.294957','1','Intensidad object (1)',1,'[{\"added\": {}}]',13,1),(3,'2018-04-14 21:03:50.412930','1','Curso object (1)',1,'[{\"added\": {}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (1)\"}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (2)\"}}]',15,1),(4,'2018-04-14 21:03:57.729205','1','Audio object (1)',1,'[{\"added\": {}}]',12,1),(5,'2018-04-14 21:04:31.982811','2','Audio object (2)',1,'[{\"added\": {}}]',12,1),(6,'2018-04-14 21:05:13.060527','2','Docente object (2)',1,'[{\"added\": {}}]',10,1),(7,'2018-04-14 21:05:24.636084','2','Intensidad object (2)',1,'[{\"added\": {}}]',13,1),(8,'2018-04-14 21:05:53.376663','2','Curso object (2)',1,'[{\"added\": {}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (3)\"}}]',15,1),(9,'2018-04-14 21:06:27.236972','2','Curso object (2)',2,'[{\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (4)\"}}]',15,1),(10,'2018-04-14 21:06:37.465117','3','Audio object (3)',1,'[{\"added\": {}}]',12,1),(11,'2018-04-14 21:07:03.907664','4','Audio object (4)',1,'[{\"added\": {}}]',12,1),(12,'2018-04-14 21:07:58.598194','1','Video object (1)',1,'[{\"added\": {}}]',11,1),(13,'2018-04-14 21:08:10.351563','2','Video object (2)',1,'[{\"added\": {}}]',11,1),(14,'2018-04-14 21:09:14.929145','3','Curso object (3)',1,'[{\"added\": {}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (5)\"}}]',15,1),(15,'2018-04-14 21:09:19.902465','3','Video object (3)',1,'[{\"added\": {}}]',11,1),(16,'2018-04-14 21:09:34.140619','4','Video object (4)',1,'[{\"added\": {}}]',11,1),(17,'2018-04-14 21:09:46.615543','5','Video object (5)',1,'[{\"added\": {}}]',11,1),(18,'2018-04-14 21:09:57.732865','6','Video object (6)',1,'[{\"added\": {}}]',11,1),(19,'2018-04-14 21:16:38.360433','1','Docente object (1)',2,'[{\"changed\": {\"fields\": [\"apellido\"]}}]',10,1),(20,'2018-04-14 21:18:19.043871','1','Tema object (1)',1,'[{\"added\": {}}]',8,1),(21,'2018-04-14 21:18:34.084656','2','Tema object (2)',1,'[{\"added\": {}}]',8,1),(22,'2018-04-14 21:19:04.471715','3','Tema object (3)',1,'[{\"added\": {}}]',8,1),(23,'2018-04-14 21:19:31.906442','4','Tema object (4)',1,'[{\"added\": {}}]',8,1),(24,'2018-04-14 21:19:51.733111','5','Tema object (5)',1,'[{\"added\": {}}]',8,1),(25,'2018-04-14 21:20:08.409531','6','Tema object (6)',1,'[{\"added\": {}}]',8,1),(26,'2018-04-15 02:13:14.600996','3','Curso object (3)',2,'[{\"changed\": {\"fields\": [\"sede\"]}}]',15,1);
+INSERT INTO `django_admin_log` VALUES (1,'2018-04-14 21:01:37.301772','1','Docente object (1)',1,'[{\"added\": {}}]',10,1),(2,'2018-04-14 21:02:16.294957','1','Intensidad object (1)',1,'[{\"added\": {}}]',13,1),(3,'2018-04-14 21:03:50.412930','1','Curso object (1)',1,'[{\"added\": {}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (1)\"}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (2)\"}}]',15,1),(4,'2018-04-14 21:03:57.729205','1','Audio object (1)',1,'[{\"added\": {}}]',12,1),(5,'2018-04-14 21:04:31.982811','2','Audio object (2)',1,'[{\"added\": {}}]',12,1),(6,'2018-04-14 21:05:13.060527','2','Docente object (2)',1,'[{\"added\": {}}]',10,1),(7,'2018-04-14 21:05:24.636084','2','Intensidad object (2)',1,'[{\"added\": {}}]',13,1),(8,'2018-04-14 21:05:53.376663','2','Curso object (2)',1,'[{\"added\": {}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (3)\"}}]',15,1),(9,'2018-04-14 21:06:27.236972','2','Curso object (2)',2,'[{\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (4)\"}}]',15,1),(10,'2018-04-14 21:06:37.465117','3','Audio object (3)',1,'[{\"added\": {}}]',12,1),(11,'2018-04-14 21:07:03.907664','4','Audio object (4)',1,'[{\"added\": {}}]',12,1),(12,'2018-04-14 21:07:58.598194','1','Video object (1)',1,'[{\"added\": {}}]',11,1),(13,'2018-04-14 21:08:10.351563','2','Video object (2)',1,'[{\"added\": {}}]',11,1),(14,'2018-04-14 21:09:14.929145','3','Curso object (3)',1,'[{\"added\": {}}, {\"added\": {\"name\": \"estudiante\", \"object\": \"Estudiante object (5)\"}}]',15,1),(15,'2018-04-14 21:09:19.902465','3','Video object (3)',1,'[{\"added\": {}}]',11,1),(16,'2018-04-14 21:09:34.140619','4','Video object (4)',1,'[{\"added\": {}}]',11,1),(17,'2018-04-14 21:09:46.615543','5','Video object (5)',1,'[{\"added\": {}}]',11,1),(18,'2018-04-14 21:09:57.732865','6','Video object (6)',1,'[{\"added\": {}}]',11,1),(19,'2018-04-14 21:16:38.360433','1','Docente object (1)',2,'[{\"changed\": {\"fields\": [\"apellido\"]}}]',10,1),(20,'2018-04-14 21:18:19.043871','1','Tema object (1)',1,'[{\"added\": {}}]',8,1),(21,'2018-04-14 21:18:34.084656','2','Tema object (2)',1,'[{\"added\": {}}]',8,1),(22,'2018-04-14 21:19:04.471715','3','Tema object (3)',1,'[{\"added\": {}}]',8,1),(23,'2018-04-14 21:19:31.906442','4','Tema object (4)',1,'[{\"added\": {}}]',8,1),(24,'2018-04-14 21:19:51.733111','5','Tema object (5)',1,'[{\"added\": {}}]',8,1),(25,'2018-04-14 21:20:08.409531','6','Tema object (6)',1,'[{\"added\": {}}]',8,1),(26,'2018-04-15 02:13:14.600996','3','Curso object (3)',2,'[{\"changed\": {\"fields\": [\"sede\"]}}]',15,1),(27,'2018-04-15 20:14:05.299896','3','Curso object (3)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',15,1),(28,'2018-04-15 20:14:12.460786','2','Curso object (2)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',15,1),(29,'2018-04-15 20:25:32.213918','6','Video object (6)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',11,1),(30,'2018-04-15 20:25:40.805670','6','Video object (6)',2,'[]',11,1),(31,'2018-04-15 20:25:45.326901','5','Video object (5)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',11,1),(32,'2018-04-15 20:25:50.522288','4','Video object (4)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',11,1),(33,'2018-04-15 20:25:55.496093','3','Video object (3)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',11,1),(34,'2018-04-15 20:26:00.144981','2','Video object (2)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',11,1),(35,'2018-04-15 20:26:11.201098','3','Audio object (3)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',12,1),(36,'2018-04-15 20:26:16.900101','3','Audio object (3)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',12,1),(37,'2018-04-15 20:26:21.095615','2','Audio object (2)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',12,1),(38,'2018-04-15 20:26:25.211289','1','Audio object (1)',2,'[{\"changed\": {\"fields\": [\"fecha\"]}}]',12,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +258,7 @@ CREATE TABLE `django_migrations` (
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -267,7 +267,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2018-04-14 20:03:56.606311'),(2,'auth','0001_initial','2018-04-14 20:03:57.105750'),(3,'admin','0001_initial','2018-04-14 20:03:57.262036'),(4,'admin','0002_logentry_remove_auto_add','2018-04-14 20:03:57.285396'),(5,'contenttypes','0002_remove_content_type_name','2018-04-14 20:03:57.405228'),(6,'auth','0002_alter_permission_name_max_length','2018-04-14 20:03:57.444351'),(7,'auth','0003_alter_user_email_max_length','2018-04-14 20:03:57.471950'),(8,'auth','0004_alter_user_username_opts','2018-04-14 20:03:57.486517'),(9,'auth','0005_alter_user_last_login_null','2018-04-14 20:03:57.525498'),(10,'auth','0006_require_contenttypes_0002','2018-04-14 20:03:57.531385'),(11,'auth','0007_alter_validators_add_error_messages','2018-04-14 20:03:57.583569'),(12,'auth','0008_alter_user_username_max_length','2018-04-14 20:03:57.670255'),(13,'auth','0009_alter_user_last_name_max_length','2018-04-14 20:03:57.687853'),(14,'sessions','0001_initial','2018-04-14 20:03:57.721973'),(15,'workClass','0001_initial','2018-04-14 20:36:46.648337');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2018-04-14 20:03:56.606311'),(2,'auth','0001_initial','2018-04-14 20:03:57.105750'),(3,'admin','0001_initial','2018-04-14 20:03:57.262036'),(4,'admin','0002_logentry_remove_auto_add','2018-04-14 20:03:57.285396'),(5,'contenttypes','0002_remove_content_type_name','2018-04-14 20:03:57.405228'),(6,'auth','0002_alter_permission_name_max_length','2018-04-14 20:03:57.444351'),(7,'auth','0003_alter_user_email_max_length','2018-04-14 20:03:57.471950'),(8,'auth','0004_alter_user_username_opts','2018-04-14 20:03:57.486517'),(9,'auth','0005_alter_user_last_login_null','2018-04-14 20:03:57.525498'),(10,'auth','0006_require_contenttypes_0002','2018-04-14 20:03:57.531385'),(11,'auth','0007_alter_validators_add_error_messages','2018-04-14 20:03:57.583569'),(12,'auth','0008_alter_user_username_max_length','2018-04-14 20:03:57.670255'),(13,'auth','0009_alter_user_last_name_max_length','2018-04-14 20:03:57.687853'),(14,'sessions','0001_initial','2018-04-14 20:03:57.721973'),(15,'workClass','0001_initial','2018-04-14 20:36:46.648337'),(16,'workClass','0002_auto_20180415_2024','2018-04-15 20:24:54.429329');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,6 +310,7 @@ CREATE TABLE `workClass_audio` (
   `formato` varchar(6) NOT NULL,
   `ruta` varchar(100) NOT NULL,
   `curso_id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `workClass_audio_curso_id_9a9cc696_fk_workClass_curso_id` (`curso_id`),
   CONSTRAINT `workClass_audio_curso_id_9a9cc696_fk_workClass_curso_id` FOREIGN KEY (`curso_id`) REFERENCES `workClass_curso` (`id`)
@@ -322,7 +323,7 @@ CREATE TABLE `workClass_audio` (
 
 LOCK TABLES `workClass_audio` WRITE;
 /*!40000 ALTER TABLE `workClass_audio` DISABLE KEYS */;
-INSERT INTO `workClass_audio` VALUES (1,10,'MP3','audio1.mp3',1),(2,20,'MP3','audio2.mp3',1),(3,22,'MP3','audio3.mp3',2),(4,11,'MP3','audio4.mp3',1);
+INSERT INTO `workClass_audio` VALUES (1,10,'MP3','audio1.mp3',1,'2018-05-15'),(2,20,'MP3','audio2.mp3',1,'2018-03-15'),(3,22,'MP3','audio3.mp3',2,'2018-02-15'),(4,11,'MP3','audio4.mp3',1,'2018-04-15');
 /*!40000 ALTER TABLE `workClass_audio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +385,7 @@ CREATE TABLE `workClass_curso` (
 
 LOCK TABLES `workClass_curso` WRITE;
 /*!40000 ALTER TABLE `workClass_curso` DISABLE KEYS */;
-INSERT INTO `workClass_curso` VALUES (1,'2','Poblado','Ingles','2018-04-14',1,1),(2,'1','Poblado','Ingles','2018-04-14',2,2),(3,'6','Laureles','Ingles','2018-04-14',2,1);
+INSERT INTO `workClass_curso` VALUES (1,'2','Poblado','Ingles','2018-04-14',1,1),(2,'1','Poblado','Ingles','2018-02-14',2,2),(3,'6','Laureles','Ingles','2018-03-14',2,1);
 /*!40000 ALTER TABLE `workClass_curso` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,6 +548,7 @@ CREATE TABLE `workClass_video` (
   `formato` varchar(6) NOT NULL,
   `ruta` varchar(100) NOT NULL,
   `curso_id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `workClass_video_curso_id_9fe3c683_fk_workClass_curso_id` (`curso_id`),
   CONSTRAINT `workClass_video_curso_id_9fe3c683_fk_workClass_curso_id` FOREIGN KEY (`curso_id`) REFERENCES `workClass_curso` (`id`)
@@ -559,7 +561,7 @@ CREATE TABLE `workClass_video` (
 
 LOCK TABLES `workClass_video` WRITE;
 /*!40000 ALTER TABLE `workClass_video` DISABLE KEYS */;
-INSERT INTO `workClass_video` VALUES (1,12,'MP4','video1.mp4',1),(2,14,'MP4','video2.mp4',2),(3,18,'MP4','video3.mp4',3),(4,9,'MP4','video4.mp4',1),(5,10,'MP4','video5.mp4',2),(6,13,'MP4','video6.mp4',3);
+INSERT INTO `workClass_video` VALUES (1,12,'MP4','video1.mp4',1,'2018-04-15'),(2,14,'MP4','video2.mp4',2,'2018-07-15'),(3,18,'MP4','video3.mp4',3,'2018-06-15'),(4,9,'MP4','video4.mp4',1,'2018-05-15'),(5,10,'MP4','video5.mp4',2,'2018-02-15'),(6,13,'MP4','video6.mp4',3,'2018-03-15');
 /*!40000 ALTER TABLE `workClass_video` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -572,4 +574,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-15 11:57:59
+-- Dump completed on 2018-04-15 17:19:11

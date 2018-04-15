@@ -6,110 +6,212 @@
     {% block index %}
         <p></p>
         <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <div class="jumbotron">
-                    <h1 class="display-4">Sesiones</h1>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Selecciona la Sesion
-                        </button>
-                        <div class="dropdown-menu">
-                             <div class="container" style="height: 180px;overflow-y: scroll;">
-                                {% for sesion in todos_sesiones %}
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'workClass:index_sesion' sesion.sesion.id %}">{{sesion.fecha}}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <p><B>Docente: </B>{{sesion.docente.nombre}}</p>
-                    <p><B>Curso: </B>{{sesion.curso}}</p>
-                    <p><B>Sede: </B>{{sesion.sede}}</p>
-                    <p><B>Horario: </B>{{sesion.horario}}</p>
-                    <p><B>Idioma: </B>{{sesion.idioma}}</p>
-                    <p><B>Intensidad horaria: </B>{{sesion.intensidad.horas_diarias}}</p>
-                    <p><B>Intensidad semanal: </B>{{sesion.intensidad.horas_semanales}}</p>
-                </div>
-            </div>
-
-            <div class="col-sm">
-                <div class="jumbotron">
-                    <h1 class="display-4">Docentes</h1>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Selecciona al Docente
-                        </button>
-                        <div class="dropdown-menu">
-                            <div class="container" style="height: 180px;overflow-y: scroll;">
-                                {% for docente in todos_docentes %}
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'workClass:index_docente' docente.id %}">{{docente.nombre}}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <p><B>Nombre: </B>{{docente.nombre}}</p>
-                    <p><B>Apellido: </B>{{docente.apellido}}</p>
-                    <p><B>Edad: </B>{{docente.edad}}</p>
-                    <p><B>Celular: </B>{{docente.celular}}</p>
-                    <p><B>Correo: </B>{{docente.correo}}</p>
-                    <p><B>Estado: </B>{{docente.estado}}</p>
-                </div>
-            </div>
-
-
-            <div class="col-sm">
-                <div class="jumbotron">
-                    <h1 class="display-4">Estudiantes</h1>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Selecciona al Estudiante
-                        </button>
-                        <div class="dropdown-menu">
-                           <div class="container" style="height: 180px;overflow-y: scroll;">
-                            {% for estudiante in todos_estudiantes %}
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{% url 'workClass:index_estudiante' estudiante.id %}">{{estudiante.nombre}}</a>
-                            {% endfor %}
-                           </div>
-                        </div>
-                    </div>
-                    <hr class="my-4">
-                    <p><B>Nombre: </B>{{estudiante.nombre}}</p>
-                    <p><B>Apellido: </B>{{estudiante.apellido}}</p>
-                    <p><B>Edad: </B>{{estudiante.edad}}</p>
-                    <p><B>Celular: </B>{{estudiante.celular}}</p>
-                    <p><B>Correo: </B>{{estudiante.correo}}</p>
-                    <p><B>Estado: </B>{{estudiante.estado}}</p>
-                </div>
-            </div>
-
-        </div>
-
         <div class="jumbotron">
-            <h1 class="display-4">Temas</h1>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Selecciona al Estudiante
-                </button>
-            <div class="dropdown-menu">
-               <div class="container" style="height: 180px;overflow-y: scroll;">
-                    {% for tema in todos_temas %}
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'workClass:index_tema' tema.id %}">{{tema.nombre}}</a>
-                    {% endfor %}
+            <blockquote class="blockquote text-center">
+                <h5 class="display-4">¿Cual sera tu consulta?</h5>
+                <footer class="blockquote-footer">Selecciona una opcion a la vez y construye tu consulta</footer>
+            </blockquote>
+        </div>
+
+        <div class="row">
+
+             <div class="col" id="1">
+               <div class="jumbotron">
+                    <div class="row align-items-center">
+                    <div class="btn-group-vertical col-8" role="group" aria-label="Vertical button group">
+
+
+                    <div class="btn-group">
+                    <button id="Sede" type="button" class="btn btn-secondary dropdown-toggle text-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seleccione la Sede
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="container" style="height: 90px;overflow:auto;scroll;">
+                            {% for sede in todos_sedes_unicos %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'workClass:index_sede' sede %}">{{sede}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="btn-group">
+                    <button id="Idioma" type="button" class="btn btn-secondary dropdown-toggle text-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seleccione el Idioma
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="container" style="height: 90px;overflow:auto;scroll;">
+                            {% for idioma in todos_idiomas_unicos %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'workClass:index_idioma' idioma %}">{{idioma}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="btn-group">
+                    <button id="Docente" type="button" class="btn btn-secondary dropdown-toggle text-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seleccione el Docente
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="container" style="height: 90px;overflow:auto;scroll;">
+                            {% for docente in todos_docentes_unicos %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'workClass:index_docente' docente %}">{{docente}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="btn-group">
+                    <button id="Nivel" type="button" class="btn btn-secondary dropdown-toggle text-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seleccione el Nivel del curso
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="container" style="height: 90px;overflow:auto;scroll;">
+                            {% for nivel in todos_niveles_unicos %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'workClass:index_nivel' nivel %}">{{nivel}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="btn-group">
+                    <button id="Fecha" type="button" class="btn btn-secondary dropdown-toggle text-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Seleccione la Fecha
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="container" style="height: 90px;overflow:auto;scroll;">
+                            {% for fecha in todos_fechas_unicos %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'workClass:index_fecha' fecha.id %}"><B>Curso: </B>{{fecha.id}} - {{fecha.fecha}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+
+                </div>
+                    <div class="col-2">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#consulta">
+                          Realizar consulta!
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="consulta" tabindex="-1" role="dialog" aria-labelledby="ConsultaLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="ConsultaLabel"><B>Curso: </B>{{curso.id}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+
+                              <div class="container">
+                                <div class="row" id="info 1">
+                                    <div class="col">
+                                       <p><B>Idiomas: </B>{{idioma}}</p>
+                                       <p><B>Nivel: </B>{{nivel}}</p>
+                                       <p><B>Fecha: </B>{{curso.fecha}}</p>
+                                       <p><B>Sede: </B>{{sede}}</p>
+                                    </div>
+                                    <div class="col">
+                                       <p><B>No. Estudiante: </B>{{ estudiantes|length }}</p>
+                                       <p><B>No. Temas: </B>{{ temas|length }}</p>
+                                       <p><B>No. Videos: </B>{{ videos|length }}</p>
+                                       <p><B>No. Audios: </B>{{ audios|length }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="info 2">
+                                    <div class="col">
+                                       <hr class="my-4">
+                                       <p><B>Intensidad: </B>{{ curso.intensidad.intensidad }}</p>
+                                       <p><B>Horario: </B>{{ curso.intensidad.horario }}</p>
+                                       <p><B>Horas semanales: </B>{{ curso.intensidad.horas_semanales }} y <B>horas diarias: </B>{{ curso.intensidad.horas_diarias }}</p>
+                                       <p><B>Docente: </B>{{ docente.nombre }} {{ docente.apellido }}</p>
+                                       <p><B>Celular: </B>{{ docente.celular }}</p>
+                                       <p><B>Correo: </B>{{ docente.correo}}</p>
+                                    </div>
+                                </div>
+                                <hr class="my-4">
+                                <div class="row" id="info 3">
+                                    <div class="col">
+                                       <p><B>Estudiantes</B></p>
+                                        {% for estudiante in estudiantes %}
+                                            <hr class="my-4">
+                                            <p><B>Estudiante: </B>{{ estudiante.nombre }} {{estudiante.apellido}}</p>
+                                            <p><B>Celular: </B>{{ estudiante.celular }}</p>
+                                            <p><B>Correo: </B>{{ estudiante.correo }}</p>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col">
+                                       <p><B>Temas</B></p>
+                                        {% for tema in temas %}
+                                            <hr class="my-4">
+                                            <p><B>Nombre: </B>{{tema.nombre}}</p>
+                                            <p><B>Fecha: </B>{{tema.fecha}}</p>
+                                            <p><B>Descripcion: </B>{{tema.descripcion}}</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                              </div>
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                    </div>
+                    </div>
                </div>
+             </div>
+
+             <div class="col" id="2">
+                <div class="jumbotron">
+
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th colspan="2" scope="col">Consulta seleccionada</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Sede:</th>
+                          <td>{{sede}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Idioma:</th>
+                          <td>{{idioma}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Docente:</th>
+                          <td>{{docente_nombre}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Nivel:</th>
+                          <td>{{nivel}}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Fecha:</th>
+                          <td>{{curso.fecha}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                </div>
             </div>
-            </div>
-            <hr class="my-4">
-            <p><B>Nombre: </B>{{tema.nombre}}</p>
-            <p><B>Descripcion: </B>{{tema.descripcion}}</p>
-            <p><B>fecha: </B>{{tema.fecha}}</p>
 
         </div>
+
 
         </div>
 

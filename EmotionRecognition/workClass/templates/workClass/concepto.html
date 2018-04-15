@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="jumbotron">
-                        <h1 class="display-4">Sesiones</h1>
+                        <h1 class="display-4">Cursos</h1>
                         <div class="btn-group">
                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Selecciona la Sesion
@@ -17,7 +17,7 @@
                             <div class="dropdown-menu">
 
                                  <div class="container" style="height: 180px;overflow-y: scroll;">
-                                {% for sesion in todos_sesiones %}
+                                {% for sesion in todos_cursos %}
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'workClass:concepto' %}">{{sesion.fecha}}</a>
                                 {% endfor %}

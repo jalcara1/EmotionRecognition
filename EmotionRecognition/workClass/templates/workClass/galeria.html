@@ -67,77 +67,7 @@
                 </div>
               </div>
             </div>
-
-
-
-            <div class="row">
-                <div class="col-sm">
-                    <div class="jumbotron">
-                        <h1 class="display-4">Sesiones</h1>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selecciona la Sesion
-                            </button>
-                            <div class="dropdown-menu">
-                                 <div class="container" style="height: 180px;overflow-y: scroll;">
-                                {% for sesion in todos_sesiones %}
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'workClass:galeria_sesion' sesion.sesion.id %}">{{sesion.fecha}}</a>
-                                {% endfor %}
-                            </div>
-                            </div>
-                        </div>
-                        <hr class="my-4">
-                        <p><B>Docente: </B>{{sesion.docente.nombre}}</p>
-                        <p><B>Curso: </B>{{sesion.curso}}</p>
-                        <p><B>Sede: </B>{{sesion.sede}}</p>
-                        <p><B>Horario: </B>{{sesion.horario}}</p>
-                        <p><B>Idioma: </B>{{sesion.idioma}}</p>
-                        <p><B>Intensidad horaria: </B>{{sesion.intensidad.horas_diarias}}</p>
-                        <p><B>Intensidad semanal: </B>{{sesion.intensidad.horas_semanales}}</p>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="jumbotron">
-                        <h1 class="display-4">Docentes</h1>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Selecciona al Docente
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="container" style="height: 180px;overflow-y: scroll;">
-                                    {% for docente in todos_docentes %}
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{% url 'workClass:galeria_docente' docente.id %}">{{docente.nombre}}</a>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4">
-                        <p><B>Nombre: </B>{{docente.nombre}}</p>
-                        <p><B>Apellido: </B>{{docente.apellido}}</p>
-                        <p><B>Edad: </B>{{docente.edad}}</p>
-                        <p><B>Celular: </B>{{docente.celular}}</p>
-                        <p><B>Correo: </B>{{docente.correo}}</p>
-                        <p><B>Estado: </B>{{docente.estado}}</p>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="jumbotron">
-                <h1 class="display-4">Temas</h1>
-                <hr class="my-4">
-                {% for tema in temas %}
-                    <p><B>Nombre: </B>{{tema.nombre}}</p>
-                    <p><B>Descripcion: </B>{{tema.descripcion}}</p>
-                    <p><B>fecha: </B>{{tema.fecha}}</p>
-                    <hr/>
-                {% endfor %}
-            </div>
-        </div>
-
-
+          </div>
 {% endblock %}
 </body>
 </html>

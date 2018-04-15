@@ -1,150 +1,162 @@
-from django.shortcuts import render
-from .models import Video, Audio, Sesion, Docente, Estudiante, Tema
+from django.shortcuts import render, render_to_response
 
-todos_audios = Audio.objects.all()
-todos_videos = Video.objects.all()
-reprod_video = todos_videos[0]
-reprod_audio = todos_audios[0]
-todos_sesiones = Video.objects.all()
+from .models import Audio, Curso, Docente, Estudiante, Tema, Video
+
+try:
+    todos_audios = Audio.objects.all()
+    todos_videos = Video.objects.all()
+    reprod_video = todos_videos[0]
+    reprod_audio = todos_audios[0]
+except:
+    reprod_audio = None
+    reprod_video = None
+todos_cursos = Curso.objects.all()
 todos_docentes = Docente.objects.all()
 todos_estudiantes = Estudiante.objects.all()
 todos_temas = Tema.objects.all()
 
+todos_sedes_unicos = Curso.objects.values_list('sede', flat=True).order_by('sede').distinct()
+todos_idiomas_unicos = Curso.objects.values_list('idioma', flat=True).order_by('idioma').distinct()
+todos_docentes_unicos = Docente.objects.values_list('nombre', flat=True).order_by('nombre').distinct()
+todos_niveles_unicos = Curso.objects.values_list('nivel', flat=True).order_by('nivel').distinct()
+todos_fechas_unicos = Curso.objects.values('id', 'fecha').order_by('id').distinct()
+
+contexto_index = {'todos_sedes_unicos': todos_sedes_unicos,
+                  'todos_idiomas_unicos': todos_idiomas_unicos,
+                  'todos_docentes_unicos': todos_docentes_unicos,
+                  'todos_niveles_unicos': todos_niveles_unicos,
+                  'todos_fechas_unicos': todos_fechas_unicos}
+
+
 def index(request):
-    return render(request, 'workClass/index.html',  {'todos_sesiones': todos_sesiones,
-                                                     'todos_docentes': todos_docentes,
-                                                     'todos_estudiantes': todos_estudiantes,
-                                                     'todos_temas': todos_temas})
+    contexto_index.pop('sede', None)
+    contexto_index.pop('idioma', None)
+    contexto_index.pop('docente_nombre', None)
+    contexto_index.pop('nivel', None)
+    contexto_index.pop('curso', None)
+    contexto_index.pop('estudiantes', None)
+    contexto_index.pop('temas', None)
+    contexto_index.pop('videos', None)
+    contexto_index.pop('audios', None)
+    contexto_index.pop('docente', None)
 
-def index_sesion(request, sesion_id):
-    sesion = Sesion.objects.get(pk=sesion_id)
-    docente = Docente.objects.all()[0]
-    estudiante = Estudiante.objects.all()[0]
-    tema = Tema.objects.all()[0]
-    return render(request, 'workClass/index.html', {'todos_sesiones': todos_sesiones,
-                                                    'todos_docentes': todos_docentes,
-                                                    'todos_estudiantes': todos_estudiantes,
-                                                    'todos_temas': todos_temas,
-                                                    'sesion': sesion,
-                                                    'docente': docente,
-                                                    'estudiante': estudiante,
-                                                    'tema': tema})
+    return render(request, 'workClass/index.html', contexto_index)
 
-def index_docente(request, docente_id):
-    docente = Docente.objects.get(pk=docente_id)
-    estudiante = Estudiante.objects.all()[0]
-    tema = Tema.objects.all()[0]
-    sesion = Sesion.objects.all()[0]
-    return render(request, 'workClass/index.html', {'todos_sesiones': todos_sesiones,
-                                                    'todos_docentes': todos_docentes,
-                                                    'todos_estudiantes': todos_estudiantes,
-                                                    'todos_temas': todos_temas,
-                                                    'sesion': sesion,
-                                                    'docente': docente,
-                                                    'estudiante': estudiante,
-                                                    'tema': tema})
+def index_sede(request, sede):
+    contexto_index['sede'] = sede
+    return render(request, 'workClass/index.html', contexto_index)
 
-def index_estudiante(request, estudiante_id):
-    estudiante = Estudiante.objects.get(pk=estudiante_id)
-    docente = Docente.objects.all()[0]
-    tema = Tema.objects.all()[0]
-    sesion = Sesion.objects.all()[0]
-    return render(request, 'workClass/index.html', {'todos_sesiones': todos_sesiones,
-                                                    'todos_estudiantes': todos_estudiantes,
-                                                    'todos_docentes': todos_docentes,
-                                                    'todos_temas': todos_temas,
-                                                    'sesion': sesion,
-                                                    'estudiante': estudiante,
-                                                    'docente': docente,
-                                                    'tema': tema})
+def index_idioma(request, idioma):
+    contexto_index['idioma'] = idioma
+    return render(request, 'workClass/index.html', contexto_index)
 
-def index_tema(request, tema_id):
-    tema = Tema.objects.get(pk=tema_id)
-    docente = Docente.objects.all()[0]
-    estudiante = Estudiante.objects.all()[0]
-    sesion = Sesion.objects.all()[0]
-    return render(request, 'workClass/index.html', {'todos_sesiones': todos_sesiones,
-                                                    'todos_temas': todos_temas,
-                                                    'todos_docentes': todos_docentes,
-                                                    'todos_estudiantes': todos_estudiantes,
-                                                    'sesion': sesion,
-                                                    'tema': tema,
-                                                    'docente': docente,
-                                                    'estudiante': estudiante})
+def index_docente(request, docente_nombre):
+    contexto_index['docente_nombre'] = docente_nombre
+    return render(request, 'workClass/index.html', contexto_index)
+
+def index_nivel(request, nivel):
+    contexto_index['nivel'] = nivel
+    return render(request, 'workClass/index.html', contexto_index)
+
+def index_fecha(request, fecha_id):
+    curso = Curso.objects.get(pk=fecha_id)
+    contexto_index['curso'] = curso
+    estudiantes = Estudiante.objects.filter(curso=fecha_id)
+    contexto_index['estudiantes'] = estudiantes
+    temas = Tema.objects.filter(curso=fecha_id)
+    contexto_index['temas'] = temas
+    videos = Video.objects.filter(curso=fecha_id)
+    contexto_index['videos'] = videos
+    audios = Audio.objects.filter(curso=fecha_id)
+    contexto_index['audios'] = audios
+    docente = Docente.objects.filter(nombre=contexto_index.get("docente_nombre", None)).distinct()
+    contexto_index['docente'] = docente[0]
+    return render(request, 'workClass/index.html', contexto_index)
+
+
+
 
 def galeria(request):
-    sesion = Sesion.objects.all()[0]
-    docente = Docente.objects.all()[0]
-    temas = Tema.objects.filter(sesion=sesion)
+    try:
+        curso = Curso.objects.all()[0]
+        docente = Docente.objects.all()[0]
+    except:
+        curso = None
+        docente = None
+    temas = Tema.objects.filter(curso=curso)
     return render(request, 'workClass/galeria.html', {'todos_videos': todos_videos,
                                                       'reprod_video': reprod_video,
                                                       'todos_audios': todos_audios,
                                                       'reprod_audio': reprod_audio,
-                                                      'todos_sesiones': todos_sesiones,
+                                                      'todos_cursos': todos_cursos,
                                                       'todos_docentes': todos_docentes,
                                                       'docente': docente,
-                                                      'sesion': sesion,
+                                                      'curso': curso,
                                                       'temas': temas})
 def galeria_video(request, video_id):
     reprod_video = Video.objects.get(pk=video_id)
-    sesion = Sesion.objects.all()[0]
+    curso = Curso.objects.all()[0]
     docente = Docente.objects.all()[0]
     return render(request, 'workClass/galeria.html', {'todos_videos': todos_videos,
                                                       'reprod_video': reprod_video,
                                                       'todos_audios': todos_audios,
                                                       'reprod_audio': reprod_audio,
-                                                      'todos_sesiones': todos_sesiones,
+                                                      'todos_cursos': todos_cursos,
                                                       'todos_docentes': todos_docentes,
                                                       'docente': docente,
-                                                      'sesion': sesion})
+                                                      'curso': curso})
 def galeria_audio(request, audio_id):
     reprod_audio = Audio.objects.get(pk=audio_id)
-    sesion = Sesion.objects.all()[0]
+    curso = Curso.objects.all()[0]
     docente = Docente.objects.all()[0]
     return render(request, 'workClass/galeria.html', {'todos_videos': todos_videos,
                                                       'reprod_video': reprod_video,
                                                       'todos_audios': todos_audios,
                                                       'reprod_audio': reprod_audio,
-                                                      'todos_sesiones': todos_sesiones,
+                                                      'todos_cursos': todos_cursos,
                                                       'todos_docentes': todos_docentes,
                                                       'docente': docente,
-                                                      'sesion': sesion})
+                                                      'curso': curso})
 
-def galeria_sesion(request, sesion_id):
-    sesion = Sesion.objects.get(pk=sesion_id)
+def galeria_curso(request, curso_id):
+    curso = Curso.objects.get(pk=curso_id)
     docente = Docente.objects.all()[0]
-    temas = Tema.objects.filter(sesion=sesion)
+    temas = Tema.objects.filter(curso=curso)
     return render(request, 'workClass/galeria.html', {'todos_videos': todos_videos,
                                                       'reprod_video': reprod_video,
                                                       'todos_audios': todos_audios,
                                                       'reprod_audio': reprod_audio,
-                                                      'todos_sesiones': todos_sesiones,
+                                                      'todos_cursos': todos_cursos,
                                                       'todos_docentes': todos_docentes,
                                                       'docente': docente,
-                                                      'sesion': sesion,
+                                                      'curso': curso,
                                                       'temas': temas})
 
 def galeria_docente(request, docente_id):
     docente = Docente.objects.get(pk=docente_id)
-    sesion = Sesion.objects.all()[0]
+    curso = Curso.objects.all()[0]
     return render(request, 'workClass/galeria.html', {'todos_videos': todos_videos,
                                                       'reprod_video': reprod_video,
                                                       'todos_audios': todos_audios,
                                                       'reprod_audio': reprod_audio,
-                                                      'todos_sesiones': todos_sesiones,
+                                                      'todos_cursos': todos_cursos,
                                                       'todos_docentes': todos_docentes,
                                                       'docente': docente,
-                                                      'sesion': sesion})
+                                                      'curso': curso})
 
 def concepto(request):
     return render(request, 'workClass/concepto.html', {'todos_videos': todos_videos,
                                                        'todos_audios': todos_audios,
-                                                       'todos_sesiones': todos_sesiones,
+                                                       'todos_cursos': todos_cursos,
                                                        'todos_docentes': todos_docentes})
 
 def estadisticas(request):
-    video = Video.objects.all()[0]
-    audio = Audio.objects.all()[0]
+    try:
+        video = Video.objects.all()[0]
+        audio = Audio.objects.all()[0]
+    except:
+        video = None
+        audio = None
     return render(request, 'workClass/estadisticas.html', {'todos_videos': todos_videos,
                                                            'todos_audios': todos_audios,
                                                            'video': video,
@@ -153,7 +165,6 @@ def estadisticas(request):
 def estadisticas_video(request, video_id):
     video = Video.objects.get(pk=video_id)
     audio = Audio.objects.all()[0]
-    print(video, " ----------->>>>>>>>")
     return render(request, 'workClass/estadisticas.html', {'todos_videos': todos_videos,
                                                            'todos_audios': todos_audios,
                                                            'video': video,
@@ -166,3 +177,4 @@ def estadisticas_audio(request, audio_id):
                                                            'todos_audios': todos_audios,
                                                            'video': video,
                                                            'audio': audio})
+

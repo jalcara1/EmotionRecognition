@@ -1,6 +1,6 @@
-from django.shortcuts import render, render_to_response
-
+from django.shortcuts import render
 from .models import Audio, Curso, Docente, Estudiante, Tema, Video
+from .forms import videoForm, audioForm
 
 try:
     todos_audios = Audio.objects.all()
@@ -80,6 +80,22 @@ def index_fecha(request, fecha_id):
     return render(request, 'workClass/index.html', contexto_index)
 
 
+def formularios(request):
+    if request.method == "POST":
+        form1 = videoForm(request.POST, request.FILES)
+        form2 = audioForm(request.POST, request.FILES)
+        if form1.is_valid():
+            form1.save()
+        if form2.is_valid():
+            form2.save()
+    else:
+        form1 = videoForm()
+        form2 = audioForm()
+
+    contexto_index['form1'] = form1
+    contexto_index['form2'] = form2
+
+
 def galeria(request):
     try:
         curso_id = contexto_index.get("curso", None).id
@@ -91,17 +107,19 @@ def galeria(request):
         print("No ha seleccionado ningun curso")
         contexto_index['videos'] = None
         contexto_index['audios'] = None
+    formularios(request)
     return render(request, 'workClass/galeria.html', contexto_index)
 
 def galeria_video(request, video_id):
     reprod_video = Video.objects.get(pk=video_id)
-    print(reprod_video, " ------------->>>>>>>")
-    contexto_index['reprod_video']=reprod_video
+    contexto_index['reprod_video'] = reprod_video
+    formularios(request)
     return render(request, 'workClass/galeria.html', contexto_index)
 
 def galeria_audio(request, audio_id):
     reprod_audio= Audio.objects.get(pk=audio_id)
     contexto_index['reprod_audio'] = reprod_audio
+    formularios(request)
     return render(request, 'workClass/galeria.html', contexto_index)
 
 

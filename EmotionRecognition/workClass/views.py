@@ -55,6 +55,11 @@ def index_idioma(request, idioma):
 
 def index_docente(request, docente_nombre):
     contexto_index['docente_nombre'] = docente_nombre
+    docente = Docente.objects.filter(nombre=docente_nombre).distinct()
+    try:
+        contexto_index['docente'] = docente[0]
+    except:
+        print("No ha seleccionado ningun docente")
     return render(request, 'workClass/index.html', contexto_index)
 
 def index_nivel(request, nivel):

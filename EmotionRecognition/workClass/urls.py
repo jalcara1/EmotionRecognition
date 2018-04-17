@@ -18,5 +18,4 @@ urlpatterns = [
         path('estadisticas/', views.estadisticas, name='estadisticas'),
         path('<int:audio_id>/estadisticas_audio/', views.estadisticas_audio, name='estadisticas_audio'),
         path('<int:video_id>/estadisticas_video/', views.estadisticas_video, name='estadisticas_video')
-
         ]

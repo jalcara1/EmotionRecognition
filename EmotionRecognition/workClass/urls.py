@@ -1,9 +1,9 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 app_name = 'workClass'
 urlpatterns = [
-        path('<borrarconsulta>', views.index, name='index'),
+        re_path(r'^(.*)$', views.index, name='index'),
         path('<sede>/index_sede/', views.index_sede, name='index_sede'),
         path('<idioma>/index_idioma/', views.index_idioma, name='index_idioma'),
         path('<docente_nombre>/index_docente/', views.index_docente, name='index_docente'),

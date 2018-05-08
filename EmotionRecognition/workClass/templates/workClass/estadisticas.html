@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
+
     {% block arg_class4 %}active text-black{% endblock %}
     {% block estadisticas %}
         <div class="container">
@@ -71,8 +72,27 @@
                     <div class="jumbotron">
                         <h1 class="display-4">Descripcion estadistica relevante</h1>
                         <hr class="my-4">
-                        <p>Descripcion estadistica relevante tal como: max, min,
-                            frecuencias de los datos historicos y globales del sistema</p>
+                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                        <canvas id="pie-chart" width="800" height="250"></canvas>
+                        <script>
+                            new Chart(document.getElementById("pie-chart"), {
+                            type: 'pie',
+                            data: {
+                              labels: ["Happy","Angry","Surpriced","Sad","Calm","Disgusted","Confused"],
+                              datasets: [{
+                                label: "Population (millions)",
+                                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                data: [62,10,8,15,5]
+                              }]
+                            },
+                            options: {
+                              title: {
+                                display: true,
+                                text: 'Clasificacion de emociones'
+                              }
+                            }
+                        });
+                        </script>
                     </div>
                 </div>
                 <div class="col-sm">
@@ -91,8 +111,8 @@
                             </div>
                         </div>
                         <hr class="my-4">
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-                        <canvas id="bar-chart" width="600" height="250"></canvas>
+
+                        <canvas id="bar-chart" width="800" height="250"></canvas>
                         <script>
                         new Chart(document.getElementById("bar-chart"), {
                             type: 'bar',
@@ -102,7 +122,7 @@
                                 {
                                   label: "Population (millions)",
                                   backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                  data: [2478,5267,734,784,433]
+                                  data: [5,62,10,15,8]
                                 }
                               ]
                             },

@@ -76,23 +76,14 @@ class Calificacion(models.Model):
     calificacion = models.FloatField(default=0, validators=[MaxValueValidator(5), MinValueValidator(0)])
 
 class Video(models.Model):
-    duracion = models.FloatField()
     FORMATO_CHOICES = (('MPEG', 'MPEG'), ('WMV', 'WMV'), ('MP4', 'MP4'), ('FLV', 'FLV'))
     formato = models.CharField(choices=FORMATO_CHOICES, default='MP4', max_length=6)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
     ruta = models.FileField()
     fecha = models.DateField()
 
-class Audio(models.Model):
-    duracion = models.FloatField()
-    FORMATO_CHOICES = (('WAV', 'WAV'), ('OGG', 'OGG'), ('MP3', 'MP3'))
-    formato = models.CharField(choices=FORMATO_CHOICES, default='MP3', max_length=6)
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-    ruta = models.FileField()
-    fecha = models.DateField()
 
 class Emocion(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
-    audio = models.ForeignKey(Audio, on_delete=models.CASCADE)
     emocion = models.CharField(max_length=20)
 

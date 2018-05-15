@@ -14,9 +14,6 @@
                     {% include 'workClass/subir_video.html' %}
                 </div>
                 <div class="col-md-auto">
-                    {% include 'workClass/subir_audio.html' %}
-                </div>
-                <div class="col-md-auto">
                     {% include 'workClass/borrar_consulta.html' %}
                 </div>
             </div>
@@ -57,41 +54,6 @@
                 </div>
             </div>
 
-            <div class="jumbotron">
-                <h1 class="display-4">Audios</h1>
-                <hr class="my-4">
-              <div class="row">
-                <div class="col">
-
-                    <div class="container" style="height: 220px;overflow-y: scroll;">
-                    <div class="list-group ">
-                        {% if audios %}
-                            {% for audio in audios %}
-                                <a href="{% url 'workClass:galeria_audio' audio.id %}">
-                                <button type="button" class="list-group-item list-group-item-action">
-                                    {{audio.fecha}}
-                                </button>
-                                </a>
-                            {% endfor %}
-                        {% else %}
-                            <h2><B>Advertencia</B></h2>
-                            <p>No has seleccionado ningun curso.</p>
-                            <p></p>
-                            {% include 'workClass/borrar_consulta.html' %}
-                        {% endif %}
-                    </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="jumbotron ">
-                        <audio controls >
-                            <source src="{{ MEDIA_URL }}{{ reprod_audio.ruta }}">
-                        </audio>
-                    </div>
-                </div>
-              </div>
-            </div>
           </div>
 {% endblock %}
 </body>

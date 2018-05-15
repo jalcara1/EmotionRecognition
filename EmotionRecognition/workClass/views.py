@@ -1,15 +1,13 @@
 from django.shortcuts import render
-from .models import Audio, Curso, Docente, Estudiante, Tema, Video
-from .forms import videoForm, audioForm
+from .models import Curso, Docente, Estudiante, Tema, Video
+from .forms import videoForm
 
 try:
-    todos_audios = Audio.objects.all()
     todos_videos = Video.objects.all()
     reprod_video = todos_videos[0]
-    reprod_audio = todos_audios[0]
 except:
-    reprod_audio = None
     reprod_video = None
+
 todos_cursos = Curso.objects.all()
 todos_docentes = Docente.objects.all()
 todos_estudiantes = Estudiante.objects.all()
@@ -37,12 +35,9 @@ def index(request, borrarconsulta):
         contexto_index.pop('estudiantes', None)
         contexto_index.pop('temas', None)
         contexto_index.pop('videos', None)
-        contexto_index.pop('audios', None)
         contexto_index.pop('docente', None)
         contexto_index.pop('videos', None)
-        contexto_index.pop('audios', None)
         contexto_index.pop('reprod_video', None)
-        contexto_index.pop('reprod_audio', None)
     return render(request, 'workClass/index.html', contexto_index)
 
 def index_sede(request, sede):
@@ -75,8 +70,6 @@ def index_fecha(request, fecha_id):
     contexto_index['temas'] = temas
     videos = Video.objects.filter(curso=fecha_id)
     contexto_index['videos'] = videos
-    audios = Audio.objects.filter(curso=fecha_id)
-    contexto_index['audios'] = audios
     docente = Docente.objects.filter(nombre=contexto_index.get("docente_nombre", None)).distinct()
     try:
         contexto_index['docente'] = docente[0]
@@ -88,17 +81,12 @@ def index_fecha(request, fecha_id):
 def formularios(request):
     if request.method == "POST":
         form1 = videoForm(request.POST, request.FILES)
-        form2 = audioForm(request.POST, request.FILES)
         if form1.is_valid():
             form1.save()
-        if form2.is_valid():
-            form2.save()
     else:
         form1 = videoForm()
-        form2 = audioForm()
 
     contexto_index['form1'] = form1
-    contexto_index['form2'] = form2
 
 
 def galeria(request):
@@ -106,12 +94,9 @@ def galeria(request):
         curso_id = contexto_index.get("curso", None).id
         videos = Video.objects.filter(curso=curso_id)
         contexto_index['videos']=videos
-        audios = Audio.objects.filter(curso=curso_id)
-        contexto_index['audios']=audios
     except:
         print("No ha seleccionado ningun curso")
         contexto_index['videos'] = None
-        contexto_index['audios'] = None
     formularios(request)
     return render(request, 'workClass/galeria.html', contexto_index)
 
@@ -121,45 +106,23 @@ def galeria_video(request, video_id):
     formularios(request)
     return render(request, 'workClass/galeria.html', contexto_index)
 
-def galeria_audio(request, audio_id):
-    reprod_audio= Audio.objects.get(pk=audio_id)
-    contexto_index['reprod_audio'] = reprod_audio
-    formularios(request)
-    return render(request, 'workClass/galeria.html', contexto_index)
-
-
 
 def multimodal(request):
     return render(request, 'workClass/multimodal.html', {'todos_videos': todos_videos,
-                                                       'todos_audios': todos_audios,
                                                        'todos_cursos': todos_cursos,
                                                        'todos_docentes': todos_docentes})
 
 def estadisticas(request):
     try:
         video = Video.objects.all()[0]
-        audio = Audio.objects.all()[0]
     except:
         video = None
-        audio = None
     return render(request, 'workClass/estadisticas.html', {'todos_videos': todos_videos,
-                                                           'todos_audios': todos_audios,
-                                                           'video': video,
-                                                           'audio': audio})
+                                                           'video': video})
 
 def estadisticas_video(request, video_id):
     video = Video.objects.get(pk=video_id)
-    audio = Audio.objects.all()[0]
     return render(request, 'workClass/estadisticas.html', {'todos_videos': todos_videos,
-                                                           'todos_audios': todos_audios,
-                                                           'video': video,
-                                                           'audio': audio})
+                                                           'video': video})
 
-def estadisticas_audio(request, audio_id):
-    audio = Audio.objects.get(pk=audio_id)
-    video = Video.objects.all()[0]
-    return render(request, 'workClass/estadisticas.html', {'todos_videos': todos_videos,
-                                                           'todos_audios': todos_audios,
-                                                           'video': video,
-                                                           'audio': audio})
 

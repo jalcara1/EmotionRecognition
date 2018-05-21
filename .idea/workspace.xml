@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc3f4027-4d24-458f-a50c-43dfc8c57d64" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/angry.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/calm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/confused.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/disgusted.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/happy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/sad.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/surprised.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/media/imagenes/Emoji/unknown.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/Classifier.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/Girl/GirlEmotions2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/RussianVideo6.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/temp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/RussianVideo.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmotionRecognition/media/RussianVideo6.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/RussianVideo6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,13 +20,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="multimodal.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="15" column="69" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3798">
-              <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+            <state relative-caret-position="599">
+              <caret line="272" column="24" lean-forward="true" selection-start-line="272" selection-start-column="24" selection-end-line="272" selection-end-column="24" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="galeria.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" column="116" selection-start-line="14" selection-start-column="116" selection-end-line="14" selection-end-column="116" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,6 +74,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>Emocion</find>
+      <find>reprod_video</find>
+      <find>reprod_video_emociones</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -60,10 +85,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/admin.py" />
-        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/urls.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/migrations/0005_auto_20180520_2328.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html" />
-        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/hola.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/Classifier.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/migrations/0006_auto_20180521_0231.py" />
@@ -71,7 +94,10 @@
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/models.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/migrations/0007_auto_20180521_0304.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/temp.py" />
+        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/urls.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/views.py" />
+        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html" />
+        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html" />
       </list>
     </option>
   </component>
@@ -98,19 +124,6 @@
               <item name="EmotionRecognition" type="b2602c69:ProjectViewProjectNode" />
               <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
               <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EmotionRecognition" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
-              <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EmotionRecognition" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
-              <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="imagenes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EmotionRecognition" type="b2602c69:ProjectViewProjectNode" />
@@ -259,16 +272,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -297,20 +300,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="49" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/subir_video.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/forms.py">
@@ -319,16 +309,6 @@
           <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="85" column="50" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -386,13 +366,47 @@
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/media/RussianVideo6.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="664">
+          <caret line="85" column="50" selection-start-line="85" selection-start-column="50" selection-end-line="85" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="116" selection-start-line="14" selection-start-column="116" selection-end-line="14" selection-end-column="116" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="69" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3798">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        <state relative-caret-position="599">
+          <caret line="272" column="24" lean-forward="true" selection-start-line="272" selection-start-column="24" selection-end-line="272" selection-end-column="24" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
         </state>
       </provider>
     </entry>

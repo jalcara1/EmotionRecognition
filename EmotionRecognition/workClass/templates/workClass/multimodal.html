@@ -13,12 +13,14 @@
                     <div class="jumbotron">
                         <h1 class="display-12">Videos</h1>
 
-                            <div class="container" style="height: 280px;overflow-y: scroll;">
+                            <div class="container" style="height: 235px;overflow-y: scroll;">
                             <div class="list-group ">
                                  {%for video in todos_videos%}
+                                    {% if video.modificado == True %}
                                     <a href="{% url 'workClass:multimodal_emociones' video.id %}">
                                     <button id="video_click" type="button" class="list-group-item list-group-item-action">{{video.fecha}}</button>
                                     </a>
+                                    {% endif %}
                                  {% endfor %}
                             </div>
                             </div>
@@ -28,7 +30,7 @@
                  </div>
                  <div class="col-sm">
                     <div class="jumbotron">
-                        <h1 class="display-12">Descripcion estadistica relevante</h1>
+                        <h1 class="display-12">Frecuencia emocional</h1>
                         <hr class="my-4">
                         <canvas id="pie-chart" width="50%" height="30vh"></canvas>
                         <script>

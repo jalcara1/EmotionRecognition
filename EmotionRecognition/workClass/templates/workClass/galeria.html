@@ -22,17 +22,19 @@
             <div class="row">
                  <div class="col-sm">
                     <div class="jumbotron">
-                        <h1 class="display-4">Videos</h1>
+                        <h1 class="display-12">Videos originales</h1>
                         <hr class="my-4">
                             <div class="container" style="height: 160px;overflow-y: scroll;">
                             <div class="list-group ">
                                 {% if videos %}
                                     {% for video in videos %}
+                                        {% if video.modificado == False and video.contenido == True %}
                                         <a href="{% url 'workClass:galeria_video' video.id %}">
                                         <button  type="button" class="list-group-item list-group-item-action">
                                             {{video.fecha}}
                                         </button>
                                         </a>
+                                        {% endif %}
                                     {% endfor %}
                                 {% else %}
                                     <h2><B>Advertencia</B></h2>
@@ -48,12 +50,48 @@
                  <div class="col-sm">
                     <div class="jumbotron">
                         <video controls height="270px" width="470px">
-                              <source src="{{ MEDIA_URL }}{{ reprod_video.ruta }}" type="video/mp4">
+                              <source src="{{ MEDIA_URL }}{{ reprod_video.video }}" type="video/mp4">
                         </video>
                     </div>
                 </div>
             </div>
+            <p></p>
+            <div class="row">
+                 <div class="col-sm">
+                    <div class="jumbotron">
+                        <h1 class="display-12">Videos procesados</h1>
+                        <hr class="my-4">
+                            <div class="container" style="height: 160px;overflow-y: scroll;">
+                            <div class="list-group ">
+                                {% if videos %}
+                                    {% for video in videos %}
+                                        {% if video.modificado == True and video.contenido == True%}
+                                        <a href="{% url 'workClass:galeria_video_emociones' video.id %}">
+                                        <button  type="button" class="list-group-item list-group-item-action">
+                                            {{video.fecha}}
+                                        </button>
+                                        </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <h2><B>Advertencia</B></h2>
+                                    <p>No has seleccionado ningun curso.</p>
+                                    <p></p>
+                                    {% include 'workClass/borrar_consulta.html' %}
+                                {% endif %}
+                            </div>
+                            </div>
+                    </div>
+                </div>
 
+                 <div class="col-sm">
+                    <div class="jumbotron">
+                        <video controls height="270px" width="470px">
+                              <source src="{{ MEDIA_URL }}{{ reprod_video_emociones.video }}" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
           </div>
 {% endblock %}
 </body>

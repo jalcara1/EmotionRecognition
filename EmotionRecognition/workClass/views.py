@@ -12,9 +12,11 @@ import os
 emociones = ["HAPPY", "ANGRY", "SURPRICED", "SAD", "CALM", "DISGUSTED", "CONFUSE"]
 try:
     todos_videos = Video.objects.all()
-    reprod_video = todos_videos[0]
+    reprod_video = Video.objects.filter(modificado=False, contenido=True).first()
+    reprod_video_emociones = Video.objects.filter(modificado=True, contenido=True).first()
 except:
     reprod_video = None
+    reprod_video_emociones = None
 
 todos_cursos = Curso.objects.all()
 todos_docentes = Docente.objects.all()
@@ -46,6 +48,7 @@ def index(request, borrarconsulta):
         contexto_index.pop('docente', None)
         #contexto_index.pop('videos', None)
         contexto_index.pop('reprod_video', None)
+        contexto_index.pop('reprod_video_emociones', None)
     return render(request, 'workClass/index.html', contexto_index)
 
 def index_sede(request, sede):
@@ -123,7 +126,7 @@ def galeria(request):
     try:
         curso_id = contexto_index.get("curso", None).id
         videos = Video.objects.filter(curso=curso_id)
-        contexto_index['videos']=videos
+        contexto_index['videos'] = videos
     except:
         print("No ha seleccionado ningun curso")
         contexto_index['videos'] = None
@@ -132,8 +135,19 @@ def galeria(request):
     return render(request, 'workClass/galeria.html', contexto_index)
 
 def galeria_video(request, video_id):
+    reprod_video_emociones = Video.objects.filter(modificado=True, contenido=True).first()
     reprod_video = Video.objects.get(pk=video_id)
     contexto_index['reprod_video'] = reprod_video
+    contexto_index['reprod_video_emociones'] = reprod_video_emociones
+    formularios_1(request)
+    formularios_2(request)
+    return render(request, 'workClass/galeria.html', contexto_index)
+
+def galeria_video_emociones(request, video_id):
+    reprod_video = Video.objects.filter(modificado=False, contenido=True).first()
+    reprod_video_emociones = Video.objects.get(pk=video_id)
+    contexto_index['reprod_video'] = reprod_video
+    contexto_index['reprod_video_emociones'] = reprod_video_emociones
     formularios_1(request)
     formularios_2(request)
     return render(request, 'workClass/galeria.html', contexto_index)
@@ -223,7 +237,7 @@ def classifier(nameVideo):
                 imemo = imemo.resize((a, b))
                 im.paste(imemo, (int(x1), int(y1)), imemo)
                 
-                for emotion in faceDetail['Emotions']:
+                for emotion in faceDetails['Emotions']:
                     confianza = float(str(emotion["Confidence"]))
                     emocion = str(emotion["Type"])
                     if confianza > confianza_final:

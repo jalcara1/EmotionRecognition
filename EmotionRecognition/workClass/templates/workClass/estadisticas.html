@@ -7,107 +7,74 @@
     {% block estadisticas %}
         <div class="container">
             <p></p>
-            <div class="row">
-
-                 <div class="col-sm">
-                    <div class="jumbotron">
-                        <h1 class="display-4">Videos</h1>
-
-                            <div class="container" style="height: 130px;overflow-y: scroll;">
-                            <div class="list-group ">
-                                 {% for video in todos_videos %}
-                                    <a href="{% url 'workClass:estadisticas_vide' video.id %}">
-                                    <button type="button" class="list-group-item list-group-item-action">{{video.fecha}}</button>
-                                    </a>
-                                 {% endfor %}
-                            </div>
-                            </div>
-                         <hr class="my-4">
-                         <p>Seleccione el video para cargar el concepto de la analitica</p>
-                    </div>
-
-                </div>
-                <div class="jumbotron">
-                    <h1 class="display-4">Descripcion del video</h1>
-                    <hr class="my-4">
-                    <p><B>Fecha: </B>{{video.fecha}}</p>
-                    <p><B>Formato: </B>{{video.formato}}</p>
-                    <p><B>Duracion: </B>{{video.duracion}}</p>
-                    <p><B>Emocion: </B>{{video.emocion}}</p>
-                </div>
-
-            </div>
 
             <div class="row">
+
                 <div class="col-sm">
                     <div class="jumbotron">
-                        <h1 class="display-4">Descripcion estadistica relevante</h1>
-                        <hr class="my-4">
-                        <canvas id="pie-chart" width="800" height="250"></canvas>
-                        <script>
-                            new Chart(document.getElementById("pie-chart"), {
-                            type: 'pie',
-                            data: {
-                              labels: ["Happy","Angry","Surpriced","Sad","Calm","Disgusted","Confused"],
-                              datasets: [{
-                                label: "Population (millions)",
-                                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                data: [62,10,8,15,5]
-                              }]
-                            },
-                            options: {
-                              title: {
-                                display: true,
-                                text: 'Clasificacion de emociones'
-                              }
-                            }
-                        });
-                        </script>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="jumbotron">
-                        <h1 class="display-4">Graficas</h1>
+                        <h1 class="display-12">Correlacion entre el nivel, la calificacion y la emocion</h1>
                         <div class="btn-group">
                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Seleccione en evento
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Grafica 1</a>
+                                <a class="dropdown-item" href="#">General</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Grafica 2</a>
+                                <a class="dropdown-item" href="#">Adultos</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Grafica 3</a>
+                                <a class="dropdown-item" href="#">Adolecentes</a>
                             </div>
                         </div>
                         <hr class="my-4">
 
-                        <canvas id="bar-chart" width="800" height="250"></canvas>
+                        <canvas id="doughnut-chart" width="50%" height="30vh"></canvas>
                         <script>
-                        new Chart(document.getElementById("bar-chart"), {
+                            var emociones = JSON.parse('{{ emociones|safe }}');
+                            new Chart(document.getElementById("doughnut-chart"), {
                             type: 'bar',
                             data: {
-                              labels: ["Happy","Angry","Surpriced","Sad","Calm","Disgusted","Confused"],
-                              datasets: [
-                                {
-                                  label: "Population (millions)",
-                                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                  data: [5,62,10,15,8]
-                                }
-                              ]
+                              labels: emociones,
+                              datasets: [{
+                                label: "Data 1",
+                                backgroundColor: ["#F0E00B","#F211D7","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                data: [1,2,3,4,2,3,2]
+                              },
+                              {
+                                label: "Data 2",
+                                backgroundColor: ["#F0E00B","#F211D7","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                data: [1,2,3,4,2,3,2]
+                              },
+                              {
+                                label: "Data 3",
+                                backgroundColor: ["#F0E00B","#F211D7","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                data: [1,2,3,4,2,3,2]
+                              }]
                             },
                             options: {
-                              legend: { display: false },
-                              title: {
-                                display: true,
-                                text: 'Clasificacion de emociones'
-                              }
+                                legend: {
+                                    position: 'top',
+                                },
+                                  title: {
+                                    display: true,
+                                  },
+                                  tooltips: {
+                                mode: 'index',
+                                intersect: false
+                                },
+                                responsive: true,
+                                scales: {
+                                    xAxes: [{
+                                        stacked: true,
+                                    }],
+                                    yAxes: [{
+                                        stacked: true
+                                    }]
+                                }
                             }
-                    });
+                        });
                         </script>
 
                         <p></p>
-                        <p>Descripcion de la grafica</p>
                     </div>
                 </div>
             </div>
@@ -117,13 +84,3 @@
     {% endblock %}
 </body>
 </html>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('#video_click').click(function(){
-            $('#video_click').removeClass("active");
-            $(this).addClass("active");
-        });
-    });
-</script>
-

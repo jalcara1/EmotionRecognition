@@ -118,7 +118,7 @@ def formularios_2(request):
             post2.emocion = str(post2.video)[0:-4]+".json"
             background_classifier = multiprocessing.Process(name='background_classifier', target=classifier, args=(nameVideo,))
             #background_classifier.daemon = True                                       
-            background_classifier.star()
+            background_classifier.start()
             post2.save()
     else:
         form1 = videoForm()
@@ -159,9 +159,7 @@ def galeria_video_emociones(request, video_id):
 
 def multimodal(request):
     return render(request, 'workClass/multimodal.html', {'emociones': json.dumps(emociones),
-                                                         'todos_videos': todos_videos,
-                                                         'todos_cursos': todos_cursos,
-                                                         'todos_docentes': todos_docentes})
+                                                         'todos_videos': todos_videos})
 
 def multimodal_emociones(request, video_id):
     frec_emocion = Video.objects.get(pk=video_id)
@@ -174,22 +172,17 @@ def multimodal_emociones(request, video_id):
         frec_emocion_list.append(v)
     return render(request, 'workClass/multimodal.html', {'emociones': json.dumps(emociones),
                                                          'frec_emociones': json.dumps(frec_emocion_list),
-                                                         'todos_videos': todos_videos,
-                                                         'todos_cursos': todos_cursos,
-                                                         'todos_docentes': todos_docentes})
+                                                         'todos_videos': todos_videos})
 
 def estadisticas(request):
-    try:
-        video = Video.objects.all()[0]
-    except:
-        video = None
-    return render(request, 'workClass/estadisticas.html', {'todos_videos': todos_videos,
-                                                           'video': video})
+
+    return render(request, 'workClass/estadisticas.html', {'emociones': json.dumps(emociones),
+                                                           })
 
 def estadisticas_video(request, video_id):
-    video = Video.objects.get(pk=video_id)
-    return render(request, 'workClass/estadisticas.html', {'todos_videos': todos_videos,
-                                                           'video': video})
+
+    return render(request, 'workClass/estadisticas.html', {'emociones': json.dumps(emociones),
+                                                           })
 
 
 def classifier(nameVideo):

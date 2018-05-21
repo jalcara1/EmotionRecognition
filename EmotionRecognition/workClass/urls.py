@@ -16,8 +16,8 @@ urlpatterns = [
 
         path('multimodal/', views.multimodal, name='multimodal'),
         path('<int:video_id>/multimodal_emociones/', views.multimodal_emociones, name='multimodal_emociones'),
-        path('estadisticas/', views.estadisticas, name='estadisticas'),
 
+        path('estadisticas/', views.estadisticas, name='estadisticas'),
         path('<int:video_id>/estadisticas_video/', views.estadisticas_video, name='estadisticas_video'),
         re_path(r'^(.*)$', views.index, name='index'),
         ]

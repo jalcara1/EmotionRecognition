@@ -4,4 +4,7 @@ from .models import Video
 class videoForm(ModelForm):
     class Meta:
         model = Video
-        fields = '__all__'
+        fields = ['formato', 'curso', 'video', 'fecha']
+
+
+

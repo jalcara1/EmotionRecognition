@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Curso, Docente, Estudiante, Tema, Video
 from .forms import videoForm
 
+import multiprocessing
 from PIL import Image
 import subprocess
 import shutil
@@ -113,9 +114,12 @@ def formularios_2(request):
             post2.video = str("Emoji" + nameVideo)
             post2.modificado = True
             post2.contenido = True
-            post2.emocion = str(classifier(nameVideo))
+            #post2.emocion = str(classifier(nameVideo))                                
+            post2.emocion = str(post2.video)[0:-4]+".json"
+            background_classifier = multiprocessing.Process(name='background_classifier', target=classifier, args=(nameVideo,))
+            #background_classifier.daemon = True                                       
+            background_classifier.star()
             post2.save()
-
     else:
         form1 = videoForm()
 

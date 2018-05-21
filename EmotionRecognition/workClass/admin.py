@@ -1,14 +1,10 @@
 from django.contrib import admin
 
-from .models import Video, Calificacion, Docente, Estudiante, Intensidad, Curso, Tema, Emocion
-
-class EmocionAdmin(admin.ModelAdmin):
-    list_display = ('video', 'emocion')
-admin.site.register(Emocion, EmocionAdmin)
+from .models import Video, Calificacion, Docente, Estudiante, Intensidad, Curso, Tema
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('formato', 'curso_id', 'ruta')
+    list_display = ('formato', 'curso_id', 'video')
     def curso_id(self,obj):
         return obj.curso.id
 admin.site.register(Video, VideoAdmin)

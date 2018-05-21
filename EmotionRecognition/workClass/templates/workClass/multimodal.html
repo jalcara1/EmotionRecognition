@@ -11,20 +11,54 @@
 
                  <div class="col-sm">
                     <div class="jumbotron">
-                        <h1 class="display-4">Videos</h1>
+                        <h1 class="display-12">Videos</h1>
 
-                            <div class="container" style="height: 130px;overflow-y: scroll;">
+                            <div class="container" style="height: 280px;overflow-y: scroll;">
                             <div class="list-group ">
                                  {%for video in todos_videos%}
+                                    <a href="{% url 'workClass:multimodal_emociones' video.id %}">
                                     <button id="video_click" type="button" class="list-group-item list-group-item-action">{{video.fecha}}</button>
-                                {% endfor %}
+                                    </a>
+                                 {% endfor %}
                             </div>
                             </div>
                          <hr class="my-4">
                          <p>Seleccione el video para cargar el concepto de la analitica</p>
                     </div>
+                 </div>
+                 <div class="col-sm">
+                    <div class="jumbotron">
+                        <h1 class="display-12">Descripcion estadistica relevante</h1>
+                        <hr class="my-4">
+                        <canvas id="pie-chart" width="50%" height="30vh"></canvas>
+                        <script>
+                            var emociones = JSON.parse('{{ emociones|safe }}');
+                            var frec_emociones = JSON.parse('{{ frec_emociones|safe }}');
+                            new Chart(document.getElementById("pie-chart"), {
+                            type: 'pie',
+                            data: {
+                              labels: emociones,
+                              datasets: [{
+                                label: "Emociones (frecuencia)",
+                                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                                data: frec_emociones
+                              }]
+                            },
+                            options: {
+                            legend: {
+                                position: 'right',
+                            },
+                              title: {
+                                display: true,
+                              }
+                            }
+                        });
+                        </script>
+                    </div>
+                 </div>
 
-                </div>
+
+                  </div>
 
             </div>
 

@@ -79,11 +79,12 @@ class Video(models.Model):
     FORMATO_CHOICES = (('MPEG', 'MPEG'), ('WMV', 'WMV'), ('MP4', 'MP4'), ('FLV', 'FLV'))
     formato = models.CharField(choices=FORMATO_CHOICES, default='MP4', max_length=6)
     curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
-    ruta = models.FileField()
+    video = models.FileField(blank=True)
     fecha = models.DateField()
+    emocion = models.FileField(blank=True)
+    modificado = models.BooleanField(default=False)
+    contenido = models.BooleanField(default=False)
 
 
-class Emocion(models.Model):
-    video = models.ForeignKey(Video, on_delete=models.CASCADE)
-    emocion = models.CharField(max_length=20)
+
 

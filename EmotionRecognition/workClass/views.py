@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from .models import Curso, Docente, Estudiante, Tema, Video
 from .forms import videoForm
+import json
 
+emociones = ["HAPPY", "ANGRY", "SURPRICED", "SAD", "CALM", "DISGUSTED", "CONFUSE"]
 try:
     todos_videos = Video.objects.all()
     reprod_video = todos_videos[0]
@@ -36,7 +38,7 @@ def index(request, borrarconsulta):
         contexto_index.pop('temas', None)
         contexto_index.pop('videos', None)
         contexto_index.pop('docente', None)
-        contexto_index.pop('videos', None)
+        #contexto_index.pop('videos', None)
         contexto_index.pop('reprod_video', None)
     return render(request, 'workClass/index.html', contexto_index)
 
@@ -108,9 +110,25 @@ def galeria_video(request, video_id):
 
 
 def multimodal(request):
-    return render(request, 'workClass/multimodal.html', {'todos_videos': todos_videos,
-                                                       'todos_cursos': todos_cursos,
-                                                       'todos_docentes': todos_docentes})
+    return render(request, 'workClass/multimodal.html', {'emociones': json.dumps(emociones),
+                                                         'todos_videos': todos_videos,
+                                                         'todos_cursos': todos_cursos,
+                                                         'todos_docentes': todos_docentes})
+
+def multimodal_emociones(request, video_id):
+    frec_emocion = Video.objects.get(pk=video_id)
+    frec_emocion = frec_emocion.emocion
+    with open("media/"+str(frec_emocion)) as json_file:
+        frec_emocion = json.load(json_file)
+    frec_emocion = json.loads(frec_emocion)
+    frec_emocion_list = []
+    for c,v in frec_emocion.items():
+        frec_emocion_list.append(v)
+    return render(request, 'workClass/multimodal.html', {'emociones': json.dumps(emociones),
+                                                         'frec_emociones': json.dumps(frec_emocion_list),
+                                                         'todos_videos': todos_videos,
+                                                         'todos_cursos': todos_cursos,
+                                                         'todos_docentes': todos_docentes})
 
 def estadisticas(request):
     try:

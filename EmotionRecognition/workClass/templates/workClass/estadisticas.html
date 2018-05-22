@@ -7,47 +7,53 @@
     {% block estadisticas %}
         <div class="container">
             <p></p>
-
             <div class="row">
 
                 <div class="col-sm">
                     <div class="jumbotron">
                         <h1 class="display-12">Correlacion entre el nivel, la calificacion y la emocion</h1>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Seleccione en evento
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">General</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Adultos</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Adolecentes</a>
-                            </div>
-                        </div>
                         <hr class="my-4">
-
                         <canvas id="doughnut-chart" width="50%" height="30vh"></canvas>
                         <script>
                             var emociones = JSON.parse('{{ emociones|safe }}');
                             new Chart(document.getElementById("doughnut-chart"), {
                             type: 'bar',
                             data: {
-                              labels: emociones,
+                                  labels: ["A1:4","A2:4.2","B1:3.7","B2:3.6","C:3.3"],
                               datasets: [{
-                                label: "Data 1",
-                                backgroundColor: ["#F0E00B","#F211D7","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                data: [1,2,3,4,2,3,2]
+                                label: "HAPPY",
+                                backgroundColor: ["#F0E00B","#F0E00B","#F0E00B","#F0E00B","#F0E00B","#F0E00B","#F0E00B"],
+                                data: [22,40,32,10,20]
                               },
                               {
-                                label: "Data 2",
-                                backgroundColor: ["#F0E00B","#F211D7","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                data: [1,2,3,4,2,3,2]
+                                label: "ANGRY",
+                                backgroundColor: ["#F211D7","#F211D7","#F211D7","#F211D7","#F211D7","#F211D7","#F211D7"],
+                                data: [10,12,5,35,8]
                               },
                               {
-                                label: "Data 3",
-                                backgroundColor: ["#F0E00B","#F211D7","#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                                data: [1,2,3,4,2,3,2]
+                                label: "SURPRICED",
+                                backgroundColor: ["#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd","#3e95cd"],
+                                data: [18,8,5,20,18]
+                              },
+                              {
+                                label: "SAD",
+                                backgroundColor: ["#8e5ea2","#8e5ea2","#8e5ea2","#8e5ea2","#8e5ea2","#8e5ea2","#8e5ea2"],
+                                data: [10,5,5,5,2]
+                              },
+                              {
+                                label: "CALM",
+                                backgroundColor: ["#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f"],
+                                data: [28,20,43,20,35]
+                              },
+                              {
+                                label: "DISGUSTED",
+                                backgroundColor: ["#e8c3b9","#e8c3b9","#e8c3b9","#e8c3b9","#e8c3b9","#e8c3b9","#e8c3b9"],
+                                data: [10,5,5,10,2]
+                              },
+                              {
+                                label: "CONFUSE",
+                                backgroundColor: ["#c45850","#c45850","#c45850","#c45850","#c45850","#c45850","#c45850"],
+                                data: [2,10,5,0,15]
                               }]
                             },
                             options: {
@@ -79,6 +85,246 @@
                 </div>
             </div>
 
+            <p></p>
+            <div class="row">
+
+                <div class="col-sm">
+                    <div class="jumbotron">
+                        <h1 class="display-12">Correlacion entre la intensidad horaria y las emociones</h1>
+                        <h1 class="display-12">Horario Regular</h1>
+                        <hr class="my-4">
+                        <canvas id="doughnut-chart2" width="50%" height="30vh"></canvas>
+                        <script>
+                            var emociones = JSON.parse('{{ emociones|safe }}');
+                            new Chart(document.getElementById("doughnut-chart2"), {
+                            type: 'bar',
+                            data: {
+                                labels: ["Adultos","Adolecentes","Ninos"],
+                                datasets: [{
+                                label: "HAPPY",
+                                backgroundColor: ["#F0E00B","#F0E00B","#F0E00B"],
+                                data: [32,30,62]
+                              },
+                              {
+                                label: "ANGRY",
+                                backgroundColor: ["#F211D7","#F211D7","#F211D7"],
+                                data: [10,2,0]
+                              },
+                              {
+                                label: "SURPRICED",
+                                backgroundColor: ["#3e95cd","#3e95cd","#3e95cd"],
+                                data: [18,8,0]
+                              },
+                              {
+                                label: "SAD",
+                                backgroundColor: ["#8e5ea2","#8e5ea2","#8e5ea2"],
+                                data: [10,5,0]
+                              },
+                              {
+                                label: "CALM",
+                                backgroundColor: ["#3cba9f","#3cba9f","#3cba9f"],
+                                data: [28,40,37]
+                              },
+                              {
+                                label: "DISGUSTED",
+                                backgroundColor: ["#e8c3b9","#e8c3b9","#e8c3b9"],
+                                data: [0,5,0]
+                              },
+                              {
+                                label: "CONFUSE",
+                                backgroundColor: ["#c45850","#c45850","#c45850"],
+                                data: [2,10,0]
+                              }]
+                            },
+
+                            options: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                  title: {
+                                    display: true,
+                                  },
+                                  tooltips: {
+                                mode: 'index',
+                                intersect: false
+                                },
+                                responsive: true,
+                                scales: {
+                                    xAxes: [{
+                                        stacked: true,
+                                    }],
+                                    yAxes: [{
+                                        stacked: true
+                                    }]
+                                }
+                            }
+                        });
+                        </script>
+
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+             <p></p>
+            <div class="row">
+
+                <div class="col-sm">
+                    <div class="jumbotron">
+                        <h1 class="display-12">Correlacion entre la intensidad horaria y las emociones</h1>
+                        <h1 class="display-12">Horario Semi-Intensivo</h1>
+                        <hr class="my-4">
+                        <canvas id="doughnut-chart3" width="50%" height="30vh"></canvas>
+                        <script>
+                            var emociones = JSON.parse('{{ emociones|safe }}');
+                            new Chart(document.getElementById("doughnut-chart3"), {
+                            type: 'bar',
+                            data: {
+                              labels: ["Adultos","Adolecentes","Ninos"],
+                                datasets: [{
+                                label: "HAPPY",
+                                backgroundColor: ["#F0E00B","#F0E00B","#F0E00B"],
+                                data: [22,40,55]
+                              },
+                              {
+                                label: "ANGRY",
+                                backgroundColor: ["#F211D7","#F211D7","#F211D7"],
+                                data: [0,22,0]
+                              },
+                              {
+                                label: "SURPRICED",
+                                backgroundColor: ["#3e95cd","#3e95cd","#3e95cd"],
+                                data: [8,8,10]
+                              },
+                              {
+                                label: "SAD",
+                                backgroundColor: ["#8e5ea2","#8e5ea2","#8e5ea2"],
+                                data: [0,5,0]
+                              },
+                              {
+                                label: "CALM",
+                                backgroundColor: ["#3cba9f","#3cba9f","#3cba9f"],
+                                data: [18,10,0]
+                              },
+                              {
+                                label: "DISGUSTED",
+                                backgroundColor: ["#e8c3b9","#e8c3b9","#e8c3b9"],
+                                data: [12,5,0]
+                              },
+                              {
+                                label: "CONFUSE",
+                                backgroundColor: ["#c45850","#c45850","#c45850"],
+                                data: [40,10,35]
+                              }]
+                            },
+                            options: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                  title: {
+                                    display: true,
+                                  },
+                                  tooltips: {
+                                mode: 'index',
+                                intersect: false
+                                },
+                                responsive: true,
+                                scales: {
+                                    xAxes: [{
+                                        stacked: true,
+                                    }],
+                                    yAxes: [{
+                                        stacked: true
+                                    }]
+                                }
+                            }
+                        });
+                        </script>
+
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+             <p></p>
+             <div class="row">
+
+                <div class="col-sm">
+                    <div class="jumbotron">
+                        <h1 class="display-12">Correlacion entre la intensidad horaria y las emociones</h1>
+                        <h1 class="display-12">Horario Intensivo</h1>
+                        <hr class="my-4">
+                        <canvas id="doughnut-chart4" width="50%" height="30vh"></canvas>
+                        <script>
+                            var emociones = JSON.parse('{{ emociones|safe }}');
+                            new Chart(document.getElementById("doughnut-chart4"), {
+                            type: 'bar',
+                            data: {
+                              labels: ["Adultos","Adolecentes","Ninos"],
+                                datasets: [{
+                                label: "HAPPY",
+                                backgroundColor: ["#F0E00B","#F0E00B","#F0E00B"],
+                                data: [22,10,42]
+                              },
+                              {
+                                label: "ANGRY",
+                                backgroundColor: ["#F211D7","#F211D7","#F211D7"],
+                                data: [0,12,0]
+                              },
+                              {
+                                label: "SURPRICED",
+                                backgroundColor: ["#3e95cd","#3e95cd","#3e95cd"],
+                                data: [18,18,35]
+                              },
+                              {
+                                label: "SAD",
+                                backgroundColor: ["#8e5ea2","#8e5ea2","#8e5ea2"],
+                                data: [10,15,0]
+                              },
+                              {
+                                label: "CALM",
+                                backgroundColor: ["#3cba9f","#3cba9f","#3cba9f"],
+                                data: [28,20,13]
+                              },
+                              {
+                                label: "DISGUSTED",
+                                backgroundColor: ["#e8c3b9","#e8c3b9","#e8c3b9"],
+                                data: [10,15,5]
+                              },
+                              {
+                                label: "CONFUSE",
+                                backgroundColor: ["#c45850","#c45850","#c45850"],
+                                data: [12,10,5]
+                              }]
+                            },
+                            options: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                  title: {
+                                    display: true,
+                                  },
+                                  tooltips: {
+                                mode: 'index',
+                                intersect: false
+                                },
+                                responsive: true,
+                                scales: {
+                                    xAxes: [{
+                                        stacked: true,
+                                    }],
+                                    yAxes: [{
+                                        stacked: true
+                                    }]
+                                }
+                            }
+                        });
+                        </script>
+
+                        <p></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
     {% endblock %}

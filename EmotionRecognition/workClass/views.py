@@ -170,6 +170,16 @@ def multimodal_emociones(request, video_id):
     frec_emocion_list = []
     for c,v in frec_emocion.items():
         frec_emocion_list.append(v)
+    acum = 0
+    for i in frec_emocion_list:
+        acum = acum + i
+    for i in range(len(frec_emocion_list)):
+        frec_emocion_list[i] = (frec_emocion_list[i]/acum)*100
+    acum = 0
+    for i in frec_emocion_list:
+        acum = acum + i
+
+
     return render(request, 'workClass/multimodal.html', {'emociones': json.dumps(emociones),
                                                          'frec_emociones': json.dumps(frec_emocion_list),
                                                          'todos_videos': todos_videos})

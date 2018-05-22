@@ -16,7 +16,7 @@
                             <div class="container" style="height: 235px;overflow-y: scroll;">
                             <div class="list-group ">
                                  {%for video in todos_videos%}
-                                    {% if video.modificado == True %}
+                                    {% if video.modificado == True and video.contenido == False %}
                                     <a href="{% url 'workClass:multimodal_emociones' video.id %}">
                                     <button id="video_click" type="button" class="list-group-item list-group-item-action">{{video.fecha}}</button>
                                     </a>

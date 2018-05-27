@@ -9,6 +9,7 @@ import shutil
 import boto3
 import json
 import os
+import numpy as np
 
 emociones = ["HAPPY", "ANGRY", "SURPRICED", "SAD", "CALM", "DISGUSTED", "CONFUSE"]
 try:
@@ -184,15 +185,183 @@ def multimodal_emociones(request, video_id):
                                                          'frec_emociones': json.dumps(frec_emocion_list),
                                                          'todos_videos': todos_videos})
 
+contexto_estadistica = {'todos_docentes': todos_docentes,
+                        'docente_id': Docente.objects.all().first().id,
+                        'grafica': 1,
+                        "HAPPY": None, "ANGRY": None, "SURPRICED": None, "SAD": None, "CALM": None, "DISGUSTED": None, "CONFUSE": None,
+                        'emociones': json.dumps(emociones)}
+
 def estadisticas(request):
+    return render(request, 'workClass/estadisticas.html', contexto_estadistica)
 
-    return render(request, 'workClass/estadisticas.html', {'emociones': json.dumps(emociones),
-                                                           })
+def estadisticas_docente(request, docente_id):
+    contexto_estadistica['docente_id'] = docente_id
+    return render(request, 'workClass/estadisticas.html', contexto_estadistica)
 
-def estadisticas_video(request, video_id):
+def determinar_nivel(docente_nivel):
+    cursos_docentes = Curso.objects.filter(docente=contexto_estadistica['docente_id'])
+    for i in range(len(cursos_docentes)):
+        if int(cursos_docentes[i].nivel) >= 1 and int(cursos_docentes[i].nivel) <= 3:
+            docente_nivel['A1'] = Video.objects.filter(curso=cursos_docentes[i].id)
+        if int(cursos_docentes[i].nivel) >= 4 and int(cursos_docentes[i].nivel) <= 7:
+            docente_nivel['A2'] = Video.objects.filter(curso=cursos_docentes[i].id)
+        if int(cursos_docentes[i].nivel) >= 8 and int(cursos_docentes[i].nivel) <= 10:
+            docente_nivel['B1'] = Video.objects.filter(curso=cursos_docentes[i].id)
+        if int(cursos_docentes[i].nivel) >= 11 and int(cursos_docentes[i].nivel) <= 14:
+            docente_nivel['B2'] = Video.objects.filter(curso=cursos_docentes[i].id)
+        if int(cursos_docentes[i].nivel) >= 15 and int(cursos_docentes[i].nivel) <= 17:
+            docente_nivel['C'] = Video.objects.filter(curso=cursos_docentes[i].id)
+    return docente_nivel
 
-    return render(request, 'workClass/estadisticas.html', {'emociones': json.dumps(emociones),
-                                                           })
+def determinar_nivel_emocional(docente_nivel):
+    if docente_nivel.get("A1") != None:
+        docente_nivel['A1'] = docente_nivel.get("A1")[0].emocion
+    if docente_nivel.get("A2") != None:
+        docente_nivel['A2'] = docente_nivel.get("A2")[0].emocion
+    if docente_nivel.get("B1") != None:
+        docente_nivel['B1'] = docente_nivel.get("B1")[0].emocion
+    if docente_nivel.get("B2") != None:
+        docente_nivel['B2'] = docente_nivel.get("B2")[0].emocion
+    if docente_nivel.get("C") != None:
+        docente_nivel['C'] = docente_nivel.get("C")[0].emocion
+    return docente_nivel
+
+def determinar_arreglo_emocional(docente_nivel, nivel):
+    if docente_nivel.get(nivel) != None:
+        with open("media/"+str(docente_nivel.get(nivel))) as json_file:
+            frec_emocion = json.load(json_file)
+        frec_emocion = json.loads(frec_emocion)
+        frec_emocion_list = []
+        for c,v in frec_emocion.items():
+            frec_emocion_list.append(v)
+        docente_nivel[nivel] = frec_emocion_list
+
+    return docente_nivel
+
+def determinar_prop(matriz_emociones):
+    acum = 0.0
+    for i in range(matriz_emociones.shape[1]):
+        for j in range(matriz_emociones.shape[0]):
+            acum += matriz_emociones[j, i]
+        for k in range(matriz_emociones.shape[0]):
+            if acum != 0:
+                matriz_emociones[k, i] = (matriz_emociones[k, i]/acum)*100
+        acum = 0
+
+    return matriz_emociones
+
+def pasar_datos(nvector):
+    vector = []
+    for i in nvector:
+        vector.append(i)
+    return vector
+
+def determinar_intensidad(docente_intensidad):
+    cursos_docentes = Curso.objects.filter(docente=contexto_estadistica['docente_id'])
+    for i in range(len(cursos_docentes)):
+        if cursos_docentes[i].intensidad.intensidad == 'Horario regular':
+            docente_intensidad['Regular'] = Video.objects.filter(curso=cursos_docentes[i].id)
+        if cursos_docentes[i].intensidad.intensidad == 'Horario semi-intensivo':
+            docente_intensidad['SemiIntensivo'] = Video.objects.filter(curso=cursos_docentes[i].id)
+        if cursos_docentes[i].intensidad.intensidad == 'Horario intensivo':
+            docente_intensidad['Intensivo'] = Video.objects.filter(curso=cursos_docentes[i].id)
+    return docente_intensidad
+
+def determinar_intensidad_emocional(docente_intensidad):
+    if docente_intensidad.get("Regular") != None:
+        docente_intensidad['Regular'] = docente_intensidad.get("Regular")[0].emocion
+    if docente_intensidad.get("SemiIntensivo") != None:
+        docente_intensidad['SemiIntensivo'] = docente_intensidad.get("SemiIntensivo")[0].emocion
+    if docente_intensidad.get("Intensivo") != None:
+        docente_intensidad['Intensivo'] = docente_intensidad.get("Intensivo")[0].emocion
+    return docente_intensidad
+
+def estadisticas_grafica(request, grafica_id):
+    contexto_estadistica['grafica'] = grafica_id
+
+
+    if grafica_id == 1:
+        docente_nivel = {"A1": None, "A2": None, "B1": None, "B2": None, "C": None}
+        docente_nivel = determinar_nivel(docente_nivel)
+        docente_nivel = determinar_nivel_emocional(docente_nivel)
+        docente_nivel = determinar_arreglo_emocional(docente_nivel, "A1")
+        docente_nivel = determinar_arreglo_emocional(docente_nivel, "A2")
+        docente_nivel = determinar_arreglo_emocional(docente_nivel, "B1")
+        docente_nivel = determinar_arreglo_emocional(docente_nivel, "B2")
+        docente_nivel = determinar_arreglo_emocional(docente_nivel, "C")
+
+        matriz_emociones = []
+        if docente_nivel.get("A1") != None:
+            matriz_emociones.append(docente_nivel["A1"])
+        else:
+            matriz_emociones.append([0,0,0,0,0,0,0])
+        if docente_nivel.get("A2") != None:
+            matriz_emociones.append(docente_nivel["A2"])
+        else:
+            matriz_emociones.append([0,0,0,0,0,0,0])
+        if docente_nivel.get("B1") != None:
+            matriz_emociones.append(docente_nivel["B1"])
+        else:
+            matriz_emociones.append([0,0,0,0,0,0,0])
+        if docente_nivel.get("B2") != None:
+            matriz_emociones.append(docente_nivel["B2"])
+        else:
+            matriz_emociones.append([0,0,0,0,0,0,0])
+        if docente_nivel.get("C") != None:
+            matriz_emociones.append(docente_nivel["C"])
+        else:
+            matriz_emociones.append([0,0,0,0,0,0,0])
+
+        matriz_emociones = np.array(matriz_emociones)
+        matriz_emociones = np.transpose(matriz_emociones)
+
+        matriz_emociones = determinar_prop(matriz_emociones)
+
+        contexto_estadistica["HAPPY"] = json.dumps(pasar_datos(matriz_emociones[0]))
+        contexto_estadistica["ANGRY"] = json.dumps(pasar_datos(matriz_emociones[1]))
+        contexto_estadistica["SURPRICED"] = json.dumps(pasar_datos(matriz_emociones[2]))
+        contexto_estadistica["SAD"] = json.dumps(pasar_datos(matriz_emociones[3]))
+        contexto_estadistica["CALM"] = json.dumps(pasar_datos(matriz_emociones[4]))
+        contexto_estadistica["DISGUSTED"] = json.dumps(pasar_datos(matriz_emociones[5]))
+        contexto_estadistica["CONFUSE"] = json.dumps(pasar_datos(matriz_emociones[6]))
+
+    if grafica_id == 2:
+        docente_intensidad = {"Regular": None, "SemiIntensivo": None, "Intensivo": None}
+        docente_intensidad = determinar_intensidad(docente_intensidad)
+        docente_intensidad = determinar_intensidad_emocional(docente_intensidad)
+        docente_intensidad = determinar_arreglo_emocional(docente_intensidad, "Regular")
+        docente_intensidad = determinar_arreglo_emocional(docente_intensidad, "SemiIntensivo")
+        docente_intensidad = determinar_arreglo_emocional(docente_intensidad, "Intensivo")
+
+        matriz_emociones = []
+        if docente_intensidad.get("Regular") != None:
+            matriz_emociones.append(docente_intensidad["Regular"])
+        else:
+            matriz_emociones.append([0, 0, 0, 0, 0, 0, 0])
+        if docente_intensidad.get("SemiIntensivo") != None:
+            matriz_emociones.append(docente_intensidad["SemiIntensivo"])
+        else:
+            matriz_emociones.append([0, 0, 0, 0, 0, 0, 0])
+        if docente_intensidad.get("Intensivo") != None:
+            matriz_emociones.append(docente_intensidad["Intensivo"])
+        else:
+            matriz_emociones.append([0, 0, 0, 0, 0, 0, 0])
+
+        matriz_emociones = np.array(matriz_emociones)
+        matriz_emociones = np.transpose(matriz_emociones)
+        matriz_emociones = determinar_prop(matriz_emociones)
+
+
+        contexto_estadistica["HAPPY"] = json.dumps(pasar_datos(matriz_emociones[0]))
+        contexto_estadistica["ANGRY"] = json.dumps(pasar_datos(matriz_emociones[1]))
+        contexto_estadistica["SURPRICED"] = json.dumps(pasar_datos(matriz_emociones[2]))
+        contexto_estadistica["SAD"] = json.dumps(pasar_datos(matriz_emociones[3]))
+        contexto_estadistica["CALM"] = json.dumps(pasar_datos(matriz_emociones[4]))
+        contexto_estadistica["DISGUSTED"] = json.dumps(pasar_datos(matriz_emociones[5]))
+        contexto_estadistica["CONFUSE"] = json.dumps(pasar_datos(matriz_emociones[6]))
+
+    return render(request, 'workClass/estadisticas.html', contexto_estadistica)
+
 
 
 def classifier(nameVideo):

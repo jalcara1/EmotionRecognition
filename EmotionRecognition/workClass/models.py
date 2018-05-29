@@ -84,6 +84,7 @@ class Video(models.Model):
     emocion = models.FileField(blank=True)
     modificado = models.BooleanField(default=False)
     contenido = models.BooleanField(default=False)
+    audio = models.FileField(blank=True)
 
 
 

@@ -4,12 +4,27 @@ from .forms import videoForm
 
 import multiprocessing
 from PIL import Image
+import numpy as np
 import subprocess
 import shutil
 import boto3
 import json
+import nltk
+import io
+import re
 import os
-import numpy as np
+
+nltk.download('vader_lexicon')
+nltk.download('stopwords')
+nltk.download('punkt')
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from scipy.io import wavfile
+# Imports the Google Cloud client library                                                               
+from google.cloud import speech
+from google.cloud.speech import enums
+from google.cloud.speech import types
 
 emociones = ["HAPPY", "ANGRY", "SURPRICED", "SAD", "CALM", "DISGUSTED", "CONFUSE"]
 try:
@@ -408,6 +423,8 @@ def estadisticas_grafica(request, grafica_id):
 
 
 def classifier(nameVideo):
+    stop_words = set(stopwords.words('english'))
+    message_text = ""
     nameVideo = nameVideo[0:-4]
     s3 = boto3.resource('s3')
     prefix = "media/"
@@ -428,7 +445,7 @@ def classifier(nameVideo):
     }
     os.makedirs(prefix + "imagenes/" + nameVideo, exist_ok=True)
     os.makedirs(prefix + "imagenes/" + nameVideo + "Emoji", exist_ok=True)
-    videoFrames = "ffmpeg -y -i " + prefix + nameVideo + ".mp4 -r 1 " + prefix + "imagenes/" + nameVideo + "/output_%05d.png"
+    videoFrames = "ffmpeg -y -i " + prefix + nameVideo + ".mp4 -r 1 " + prefix + "imagenes/" + nameVideo + "/output_%05d.png -async 1 -vn -acodec pcm_s16le -ar 44100 -ac 1 " + prefix + nameVideo + ".wav"
     subprocess.call(['bash', '-c', videoFrames])
 
     for dirpath, dirs, files in os.walk(prefix + "imagenes/" + nameVideo):
@@ -481,11 +498,43 @@ def classifier(nameVideo):
     # emptyBucket = "aws s3 rm s3://emotion.recognition.db --recursive"
     # subprocess.call(['bash','-c', emptyBucket])
     newVideo = "ffmpeg -r 1 -i " + prefix + "imagenes/" + nameVideo + "Emoji/output_%05d.png -framerate 1 -strict -2 -pix_fmt yuv420p -c:v libx264 -c:a aac -y " + prefix + "Emoji" + nameVideo + ".mp4"
+
+    # Instantiates a client
+    client = speech.SpeechClient()
+    # The name of the audio file to transcribe
+    file_name = os.path.join(os.path.dirname(__file__), prefix + nameVideo + ".wav")
+    # Loads the audio into memory
+    with io.open(file_name, 'rb') as audio_file:
+        content = audio_file.read()
+        audio = types.RecognitionAudio(content=content)
+        config = types.RecognitionConfig(encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16, sample_rate_hertz=44100, language_code='en-US')
+        # Detects speech in the audio file
+        response = client.recognize(config, audio)
+        for result in response.results:
+            message_text = message_text + format(result.alternatives[0].transcript)
+
+    # removing stops words from the strings and clean it
+    #message_text = "JUST, how everything seems a little impersonal nowadays we've all become me usernames reference, numbers AND. IP addresses" #Example and Test
+    final = ""
+    message_text = re.sub("[^a-zA-Z]", " ", message_text.lower())
+    message_text = ' '.join(message_text.split())
+    message_text = re.sub(r'[^\w\s]', '', message_text) #Punctuations
+    string_tokens = word_tokenize(message_text)
+    for w in string_tokens:
+        if w not in stop_words:
+            final = final + " " + w
+    message_text = final
+
+    sid = SentimentIntensityAnalyzer()
+    scores = sid.polarity_scores(message_text)
+
+    scores_json = json.dumps(scores)
+    print(scores_json)
+    with open('audio_datos.json', 'w') as file:
+        json.dump(scores_json, file, ensure_ascii=False)
+
     subprocess.call(['bash', '-c', newVideo])
     shutil.rmtree(prefix + "imagenes/" + nameVideo + "Emoji/", ignore_errors=True)
     shutil.rmtree(prefix + "imagenes/" + nameVideo, ignore_errors=True)
 
     return nameVideo + '.json'
-
-
-

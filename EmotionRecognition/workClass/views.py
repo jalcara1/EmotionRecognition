@@ -502,7 +502,8 @@ def classifier(nameVideo):
     # Instantiates a client for Speech
     client = speech.SpeechClient()
     # The name of the audio file to transcribe
-    file_name = os.path.join(os.path.dirname(__file__), prefix + nameVideo + ".wav")
+    #file_name = os.path.join(os.path.dirname(__file__), prefix + nameVideo + ".wav")
+    file_name = prefix + nameVideo + ".wav"
     # Loads the audio into memory
     with io.open(file_name, 'rb') as audio_file:
         content = audio_file.read()

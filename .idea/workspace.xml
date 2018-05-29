@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fc3f4027-4d24-458f-a50c-43dfc8c57d64" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmotionRecognition/EmotionRecognition/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/EmotionRecognition/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmotionRecognition/media/RussianVideo.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmotionRecognition/media/RussianVideo.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schema_emotionRecognition.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Schema_emotionRecognition.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EmotionRecognition/workClass/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/EmotionRecognition/workClass/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +18,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-233">
-              <caret line="395" column="32" selection-start-line="395" selection-start-column="32" selection-end-line="395" selection-end-column="32" />
+            <state relative-caret-position="-569">
+              <caret line="242" column="14" selection-start-line="242" selection-start-column="14" selection-end-line="242" selection-end-column="14" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -31,20 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AudioClassifier.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/AudioClassifier.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="estadisticas.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="56" column="102" selection-start-line="56" selection-start-column="102" selection-end-line="56" selection-end-column="102" />
+            <state relative-caret-position="269">
+              <caret line="221" column="117" selection-start-line="221" selection-start-column="117" selection-end-line="221" selection-end-column="117" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -97,8 +84,6 @@
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/base.html" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/multimodal.html" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/urls.py" />
-        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/views.py" />
-        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html" />
         <option value="$PROJECT_DIR$/EmotionRecognition/EmotionRecognition/settings.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/models.py" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/clasificador_audio_1.json" />
@@ -130,6 +115,8 @@
         <option value="$PROJECT_DIR$/EmotionRecognition/media/clasificador_audio_14.json" />
         <option value="$PROJECT_DIR$/EmotionRecognition/media/clasificador_audio_15.json" />
         <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/galeria.html" />
+        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html" />
+        <option value="$PROJECT_DIR$/EmotionRecognition/workClass/views.py" />
       </list>
     </option>
   </component>
@@ -162,13 +149,6 @@
               <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
               <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
               <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EmotionRecognition" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
-              <item name="EmotionRecognition" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="imagenes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EmotionRecognition" type="b2602c69:ProjectViewProjectNode" />
@@ -236,6 +216,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="32" width="1851" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -243,8 +224,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Thumbnails" weight="0.3295964" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.2881166" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2724234" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.21524663" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2724234" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -541,27 +522,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/EmotionRecognition/media/clasificador_audio_14.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="63" selection-start-column="63" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/media/clasificador_audio_15.json">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="63" selection-start-column="63" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="56" column="102" selection-start-line="56" selection-start-column="102" selection-end-line="56" selection-end-column="102" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -578,14 +542,31 @@
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/AudioClassifier.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
-          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="22" />
+          <caret line="70" column="21" selection-start-line="70" selection-start-column="21" selection-end-line="70" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EmotionRecognition/media/clasificador_audio_14.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="56" selection-start-column="48" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/templates/workClass/estadisticas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="221" column="117" selection-start-line="221" selection-start-column="117" selection-end-line="221" selection-end-column="117" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/EmotionRecognition/workClass/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-233">
-          <caret line="395" column="32" selection-start-line="395" selection-start-column="32" selection-end-line="395" selection-end-column="32" />
+        <state relative-caret-position="-569">
+          <caret line="242" column="14" selection-start-line="242" selection-start-column="14" selection-end-line="242" selection-end-column="14" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

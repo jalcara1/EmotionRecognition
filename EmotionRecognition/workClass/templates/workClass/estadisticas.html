@@ -14,7 +14,7 @@
                     <div class="jumbotron">
                         <h1 class="display-12">Docentes</h1>
 
-                            <div class="container" style="height: 100px;overflow-y: scroll;">
+                            <div class="container" style="height: 150px;overflow-y: scroll;">
                             <div class="list-group ">
                                  {% for docente in todos_docentes %}
                                     <a href="{% url 'workClass:estadisticas_docente' docente.id %}">
@@ -33,10 +33,13 @@
                             <div class="list-group ">
 
                                 <a href="{% url 'workClass:estadisticas_grafica' 1 %}">
-                                <button type="button" class="list-group-item list-group-item-action">Relacion Docente - Nivel</button>
+                                <button type="button" class="list-group-item list-group-item-action">Relacion Docente - Emociones - Nivel</button>
                                 </a>
                                 <a href="{% url 'workClass:estadisticas_grafica' 2 %}">
-                                <button type="button" class="list-group-item list-group-item-action">Relacion Docente - Intensidad</button>
+                                <button type="button" class="list-group-item list-group-item-action">Relacion Docente - Emociones - Intensidad</button>
+                                </a>
+                                <a href="{% url 'workClass:estadisticas_grafica' 3 %}">
+                                <button type="button" class="list-group-item list-group-item-action">Relacion Docente - Expresion verbal</button>
                                 </a>
 
                             </div>
@@ -185,6 +188,65 @@
                                 label: "CONFUSE",
                                 backgroundColor: ["#c45850","#c45850","#c45850","#c45850","#c45850","#c45850","#c45850"],
                                 data: CONFUSE
+                              }]
+                            },
+
+                            options: {
+                                legend: {
+                                    position: 'top',
+                                },
+                                  title: {
+                                    display: true,
+                                  },
+                                  tooltips: {
+                                mode: 'index',
+                                intersect: false
+                                },
+                                responsive: true,
+                                scales: {
+                                    xAxes: [{
+                                        stacked: true,
+                                    }],
+                                    yAxes: [{
+                                        stacked: true
+                                    }]
+                                }
+                            }
+                        });
+                        </script>
+
+                    {% endif%}
+
+
+                    {% if grafica == 3 %}
+                        <h1 class="display-12">Relacion entre la intensidad horaria y la expresion verbal del docente</h1>
+                        <hr class="my-4">
+                        <canvas id="doughnut-chart2" width="50%" height="30vh"></canvas>
+                        <script>
+
+                            var neg = JSON.parse('{{ neg|safe }}');
+                            var neu = JSON.parse('{{ neu|safe }}');
+                            var pos = JSON.parse('{{ pos|safe }}');
+
+
+                            new Chart(document.getElementById("doughnut-chart2"), {
+                            type: 'bar',
+                            data: {
+                                labels: ["Regular","Semi-Intensivo","Intensivo"],
+                             datasets: [{
+                                label: "Negativo",
+                                backgroundColor: ["#F0E00B","#F0E00B","#F0E00B"],
+                                data: neg
+                              },
+                              {
+                                label: "Neutral",
+                                backgroundColor: ["#F211D7","#F211D7","#F211D7"],
+                                data: neu
+                              },
+                              {
+                                label: "Positivo",
+                                backgroundColor: ["#3e95cd","#3e95cd","#3e95cd"],
+                                data: pos
                               }]
                             },
 

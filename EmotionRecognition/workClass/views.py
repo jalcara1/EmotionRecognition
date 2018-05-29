@@ -188,6 +188,7 @@ def multimodal_emociones(request, video_id):
 contexto_estadistica = {'todos_docentes': todos_docentes,
                         'docente_id': Docente.objects.all().first().id,
                         'grafica': 1,
+                        "neg": None, "neu": None, "pos": None,
                         "HAPPY": None, "ANGRY": None, "SURPRICED": None, "SAD": None, "CALM": None, "DISGUSTED": None, "CONFUSE": None,
                         'emociones': json.dumps(emociones)}
 
@@ -276,6 +277,17 @@ def determinar_intensidad_emocional(docente_intensidad):
         docente_intensidad['Intensivo'] = docente_intensidad.get("Intensivo")[0].emocion
     return docente_intensidad
 
+def determinar_intensidad_audio(docente_intensidad):
+    if docente_intensidad.get("Regular") != None:
+        docente_intensidad['Regular'] = docente_intensidad.get("Regular")[0].audio
+    if docente_intensidad.get("SemiIntensivo") != None:
+        docente_intensidad['SemiIntensivo'] = docente_intensidad.get("SemiIntensivo")[0].audio
+    if docente_intensidad.get("Intensivo") != None:
+        docente_intensidad['Intensivo'] = docente_intensidad.get("Intensivo")[0].audio
+    return docente_intensidad
+
+
+
 def estadisticas_grafica(request, grafica_id):
     contexto_estadistica['grafica'] = grafica_id
 
@@ -359,6 +371,37 @@ def estadisticas_grafica(request, grafica_id):
         contexto_estadistica["CALM"] = json.dumps(pasar_datos(matriz_emociones[4]))
         contexto_estadistica["DISGUSTED"] = json.dumps(pasar_datos(matriz_emociones[5]))
         contexto_estadistica["CONFUSE"] = json.dumps(pasar_datos(matriz_emociones[6]))
+
+    if grafica_id == 3:
+        docente_intensidad = {"Regular": None, "SemiIntensivo": None, "Intensivo": None}
+        docente_intensidad = determinar_intensidad(docente_intensidad)
+        docente_intensidad = determinar_intensidad_audio(docente_intensidad)
+        docente_intensidad = determinar_arreglo_emocional(docente_intensidad, "Regular")
+        docente_intensidad = determinar_arreglo_emocional(docente_intensidad, "SemiIntensivo")
+        docente_intensidad = determinar_arreglo_emocional(docente_intensidad, "Intensivo")
+
+        matriz_emociones = []
+        if docente_intensidad.get("Regular") != None:
+            matriz_emociones.append(docente_intensidad["Regular"])
+        else:
+            matriz_emociones.append([0, 0, 0, 0])
+        if docente_intensidad.get("SemiIntensivo") != None:
+            matriz_emociones.append(docente_intensidad["SemiIntensivo"])
+        else:
+            matriz_emociones.append([0, 0, 0, 0])
+        if docente_intensidad.get("Intensivo") != None:
+            matriz_emociones.append(docente_intensidad["Intensivo"])
+        else:
+            matriz_emociones.append([0, 0, 0, 0])
+
+        matriz_emociones = np.array(matriz_emociones)
+        matriz_emociones = np.transpose(matriz_emociones)
+        matriz_emociones = determinar_prop(matriz_emociones)
+
+        contexto_estadistica["neg"] = json.dumps(pasar_datos(matriz_emociones[0]))
+        contexto_estadistica["neu"] = json.dumps(pasar_datos(matriz_emociones[1]))
+        contexto_estadistica["pos"] = json.dumps(pasar_datos(matriz_emociones[2]))
+
 
     return render(request, 'workClass/estadisticas.html', contexto_estadistica)
 

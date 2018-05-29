@@ -499,7 +499,7 @@ def classifier(nameVideo):
     # subprocess.call(['bash','-c', emptyBucket])
     newVideo = "ffmpeg -r 1 -i " + prefix + "imagenes/" + nameVideo + "Emoji/output_%05d.png -framerate 1 -strict -2 -pix_fmt yuv420p -c:v libx264 -c:a aac -y " + prefix + "Emoji" + nameVideo + ".mp4"
 
-    # Instantiates a client
+    # Instantiates a client for Speech
     client = speech.SpeechClient()
     # The name of the audio file to transcribe
     file_name = os.path.join(os.path.dirname(__file__), prefix + nameVideo + ".wav")
@@ -530,11 +530,12 @@ def classifier(nameVideo):
 
     scores_json = json.dumps(scores)
     print(scores_json)
-    with open('audio_datos.json', 'w') as file:
+    with open(prefix + nameVideo + 'Audio.json', 'w') as file:
         json.dump(scores_json, file, ensure_ascii=False)
 
     subprocess.call(['bash', '-c', newVideo])
     shutil.rmtree(prefix + "imagenes/" + nameVideo + "Emoji/", ignore_errors=True)
     shutil.rmtree(prefix + "imagenes/" + nameVideo, ignore_errors=True)
+    shutil.rmtree(prefix + nameVideo + ".wav", ignore_errors=True)
 
     return nameVideo + '.json'
